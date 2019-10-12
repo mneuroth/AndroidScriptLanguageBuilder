@@ -18,7 +18,7 @@ matrix:
       - tar zxf lua-5.3.5.tar.gz
       - cd lua-5.3.5
       # setup compiler environment for android cross compiler
-      - export PATH="$ANDROID_NDK_HOME/toolchains/arm-linux-androideabi-4.9/prebuilt/linux-x86/bin/:$PATH"
+      - export PATH="$ANDROID_NDK_HOME/toolchains/arm-linux-androideabi-4.9/prebuilt/linux-x86_64/bin/:$PATH"
       - export SYS_ROOT="$ANDROID_NDK_HOME/platforms/android-19/arch-arm/"
       - export CC="arm-linux-androideabi-gcc --sysroot=$SYS_ROOT"
       - export LD="arm-linux-androideabi-ld"
@@ -31,9 +31,11 @@ matrix:
       - export MYCFLAGS="-fPIC --sysroot=$SYS_ROOT"
       - export MYLDFLAGS="-pie"
       # build version for arm
+      - cat Makefile
       - make posix 
       - ls -l 
       - cd src
+      - cat Makefile
       - ls -l
       - ./lua -v
       - cd ..
@@ -42,8 +44,8 @@ matrix:
       - ls -lrt $ANDROID_NDK_HOME/toolchains
       - ls -lrt $ANDROID_NDK_HOME/toolchains/arm-linux-androideabi-4.9
       - ls -lrt $ANDROID_NDK_HOME/toolchains/arm-linux-androideabi-4.9/prebuilt
-      - ls -lrt $ANDROID_NDK_HOME/toolchains/arm-linux-androideabi-4.9/prebuilt/linux-x86
-      - ls -lrt $ANDROID_NDK_HOME/toolchains/arm-linux-androideabi-4.9/prebuilt/linux-x86/bin
+      - ls -lrt $ANDROID_NDK_HOME/toolchains/arm-linux-androideabi-4.9/prebuilt/linux-x86_64
+      - ls -lrt $ANDROID_NDK_HOME/toolchains/arm-linux-androideabi-4.9/prebuilt/linux-x86_64/bin
       # TODO: zip deployment file
       - pwd
       - export LUA_DEPLOY_ROOT=`pwd`
