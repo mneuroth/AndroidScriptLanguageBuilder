@@ -17,10 +17,11 @@ matrix:
       - curl -R -O http://www.lua.org/ftp/lua-5.3.5.tar.gz
       - tar zxf lua-5.3.5.tar.gz
       - cd lua-5.3.5
+      - sed -i 's/CC= gcc -std=gnu99/CC= clang/g' src/Makefile
       # setup compiler environment for android cross compiler
-      - export PATH="$ANDROID_NDK_HOME/toolchains/arm-linux-androideabi-4.9/prebuilt/linux-x86_64/bin/:$PATH"
+      - export PATH="$ANDROID_NDK_HOME/toolchains/llvm/prebuilt/linux-x86_64/bin/:$PATH"
       - export SYS_ROOT="$ANDROID_NDK_HOME/platforms/android-19/arch-arm/"
-      - export CC="arm-linux-androideabi-gcc --sysroot=$SYS_ROOT"
+      - export CC="clang --sysroot=$SYS_ROOT"
       - export LD="arm-linux-androideabi-ld"
       - export AR="arm-linux-androideabi-ar"
       - export RANLIB="arm-linux-androideabi-ranlib"
@@ -46,6 +47,7 @@ matrix:
       - ls -lrt $ANDROID_NDK_HOME/toolchains/arm-linux-androideabi-4.9/prebuilt
       - ls -lrt $ANDROID_NDK_HOME/toolchains/arm-linux-androideabi-4.9/prebuilt/linux-x86_64
       - ls -lrt $ANDROID_NDK_HOME/toolchains/arm-linux-androideabi-4.9/prebuilt/linux-x86_64/bin
+      - ls -lrt $ANDROID_NDK_HOME/toolchains/llvm/prebuilt/linux-x86_64/bin
       # TODO: zip deployment file
       - pwd
       - export LUA_DEPLOY_ROOT=`pwd`
