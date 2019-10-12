@@ -3,11 +3,6 @@ matrix:
     - os: linux
       language: android
       compiler: gcc/cmake
-      addons:
-        apt:
-          packages:
-          - cmake
-          - cmake-data
       android:
         components:
             - build-tools-26.0.2
