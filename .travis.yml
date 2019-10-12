@@ -17,15 +17,19 @@ matrix:
       - curl -R -O http://www.lua.org/ftp/lua-5.3.5.tar.gz
       - tar zxf lua-5.3.5.tar.gz
       - cd lua-5.3.5
-      - sed -i 's/CC= gcc -std=gnu99/CC= clang/g' src/Makefile
+      - which clang
+      - sed -i 's/CC= gcc -std=gnu99/CC= i686-linux-android26-clang/g' src/Makefile
+      - sed -i 's/PLAT= none/PLAT= posix/g' src/Makefile
+      - sed -i 's/AR= ar rcu/AR= i686-linux-android-ar rcu/g' src/Makefile
+      - sed -i 's/RANLIB= ranlib/RANLIB= i686-linux-android-ranlib/g' src/Makefile
       # setup compiler environment for android cross compiler
       - export PATH="$ANDROID_NDK_HOME/toolchains/llvm/prebuilt/linux-x86_64/bin/:$PATH"
       - export SYS_ROOT="$ANDROID_NDK_HOME/platforms/android-19/arch-arm/"
       - export CC="clang --sysroot=$SYS_ROOT"
-      - export LD="arm-linux-androideabi-ld"
-      - export AR="arm-linux-androideabi-ar"
-      - export RANLIB="arm-linux-androideabi-ranlib"
-      - export STRIP="arm-linux-androideabi-strip"       
+      - export LD="i686-linux-android-ld"
+      - export AR="i686-linux-android-ar"
+      - export RANLIB="i686-linux-android-ranlib"
+      - export STRIP="i686-linux-android-strip"       
       - export MY_INCLUDES="$ANDROID_NDK_HOME/sources/cxx-stl/gnu-libstdc++/4.9/include"       
       - export MY_INCLUDES2="$ANDROID_NDK_HOME/sources/cxx-stl/gnu-libstdc++/4.9/libs/armeabi/include"
       - export MY_LIBS="$ANDROID_NDK_HOME/sources/cxx-stl/gnu-libstdc++/4.9/libs/armeabi"       
@@ -33,6 +37,8 @@ matrix:
       - export MYLDFLAGS="-pie"
       # build version for arm
       - cat Makefile
+      - which clang
+      - which i686-linux-android26-clang
       - make posix 
       - ls -l 
       - cd src
