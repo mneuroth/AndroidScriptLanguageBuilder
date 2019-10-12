@@ -20,9 +20,12 @@ matrix:
       # build version for arm
       - make posix 
       - ls -l 
+      - cd src
       - lua -v
+      - cd ..
       - echo $ANDROID_NDK_HOME
       - ls -lrt $ANDROID_NDK_HOME
+      - ls -lrt $ANDROID_NDK_HOME/toolchains
       # TODO: zip deployment file
       - pwd
       - export LUA_DEPLOY_ROOT=`pwd`
