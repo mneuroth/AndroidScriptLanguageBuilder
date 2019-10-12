@@ -23,9 +23,9 @@ matrix:
       - sed -i 's/AR= ar rcu/AR= i686-linux-android-ar rcu/g' src/Makefile
       - sed -i 's/RANLIB= ranlib/RANLIB= i686-linux-android-ranlib/g' src/Makefile
       # setup compiler environment for android cross compiler
-      - export PATH="$ANDROID_NDK_HOME/toolchains/llvm/prebuilt/linux-x86_64/bin/:$PATH"
+      - export PATH="$ANDROID_NDK_HOME/toolchains/llvm/prebuilt/linux-x86_64/bin:$PATH"
       - export SYS_ROOT="$ANDROID_NDK_HOME/platforms/android-19/arch-arm/"
-      - export CC="clang --sysroot=$SYS_ROOT"
+      - export CC="i686-linux-android26-clang --sysroot=$SYS_ROOT"
       - export LD="i686-linux-android-ld"
       - export AR="i686-linux-android-ar"
       - export RANLIB="i686-linux-android-ranlib"
@@ -44,7 +44,10 @@ matrix:
       - cd src
       - cat Makefile
       - ls -l
-      - ./lua -v
+      - $STRIP lua 
+      - $STRIP luac 
+      - ls -l
+      #- ./lua -v
       - cd ..
       - echo $ANDROID_NDK_HOME
       - ls -lrt $ANDROID_NDK_HOME
