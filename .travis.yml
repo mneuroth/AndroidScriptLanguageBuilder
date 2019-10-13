@@ -35,7 +35,7 @@ matrix:
       #- export MY_INCLUDES2="$ANDROID_NDK_HOME/sources/cxx-stl/gnu-libstdc++/4.9/libs/armeabi/include"
       #- export MY_LIBS="$ANDROID_NDK_HOME/sources/cxx-stl/gnu-libstdc++/4.9/libs/armeabi"    
       #CFLAGS= -O2 -Wall -Wextra -DLUA_COMPAT_5_2 $(SYSCFLAGS) $(MYCFLAGS)   
-      - export MYCFLAGS="-fPIC --sysroot=$SYS_ROOT"
+      - export MYCFLAGS="-fPIC" # "-fPIC --sysroot=$SYS_ROOT"
       - export MYLDFLAGS="-pie"
       # build version for arm
       #- cat Makefile
