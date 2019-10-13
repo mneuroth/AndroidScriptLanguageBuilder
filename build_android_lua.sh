@@ -13,11 +13,11 @@ export MYLDFLAGS="-pie"
 #echo $COMPILER_TARGET
 #echo $SYSCFLAGS 
 #echo $MYCFLAGS
-make echo
+#make echo
 make posix 
 ls -l 
 cd src
-make echo
+#make echo
 #- cat Makefile
 ls -l
 $STRIP lua 

@@ -36,17 +36,8 @@ matrix:
       - ../build_android_lua.sh "aarch64-linux-android" "aarch64-linux-android"
       - make clean
       - ls -lrt
-      #- cat ../build_android_lua.sh
-      #- echo $ANDROID_NDK_HOME
-      #- ls -lrt $ANDROID_NDK_HOME
-      #- ls -lrt $ANDROID_NDK_HOME/toolchains
-      #- ls -lrt $ANDROID_NDK_HOME/toolchains/arm-linux-androideabi-4.9
-      #- ls -lrt $ANDROID_NDK_HOME/toolchains/arm-linux-androideabi-4.9/prebuilt
-      #- ls -lrt $ANDROID_NDK_HOME/toolchains/arm-linux-androideabi-4.9/prebuilt/linux-x86_64
-      #- ls -lrt $ANDROID_NDK_HOME/toolchains/arm-linux-androideabi-4.9/prebuilt/linux-x86_64/bin
       #- ls -lrt $ANDROID_NDK_HOME/toolchains/llvm/prebuilt/linux-x86_64/bin
-      # TODO: zip deployment file
-      - pwd
+      #- pwd
       - export LUA_DEPLOY_ROOT=`pwd`
       deploy:
         provider: releases
@@ -58,8 +49,8 @@ matrix:
           - $LUA_DEPLOY_ROOT/lua-android-armv7a-linux-androideabi-bin.zip
           - $LUA_DEPLOY_ROOT/lua-android-aarch64-linux-android-bin.zip
         skip_cleanup: true
-        #on:
-        #  tags: true
+        on:
+          tags: true
 
 install:
 - "[ $CXX = g++ ] && export CXX=g++-6 || true"
