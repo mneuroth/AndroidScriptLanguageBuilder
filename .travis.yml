@@ -16,6 +16,7 @@ matrix:
       script:
       - curl -R -O http://www.lua.org/ftp/lua-5.3.5.tar.gz
       - tar zxf lua-5.3.5.tar.gz
+      - ls -lrt
       - cd lua-5.3.5
       # disable internal build variables in make file to use externally set environment ariables
       - sed -i 's/CC= gcc -std=gnu99/#CC= i686-linux-android26-clang/g' src/Makefile
@@ -25,9 +26,9 @@ matrix:
       - sed -i 's/MYCFLAGS=/#MYCFLAGS=/g' src/Makefile
       - sed -i 's/MYLDFLAGS=/#MYLDFLAGS=/g' src/Makefile
       # setup compiler environment for android cross compiler
-      - ls -l
-      - ./build_android_lua.sh
-      - ls cat build_android_lua.sh
+      - ls -lrt
+      - ../build_android_lua.sh
+      - ls cat ../build_android_lua.sh
       - echo $ANDROID_NDK_HOME
       - ls -lrt $ANDROID_NDK_HOME
       - ls -lrt $ANDROID_NDK_HOME/toolchains
