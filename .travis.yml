@@ -21,6 +21,8 @@ matrix:
       - sed -i 's/PLAT= none/PLAT= posix/g' src/Makefile
       - sed -i 's/AR= ar rcu/AR= i686-linux-android-ar rcu/g' src/Makefile
       - sed -i 's/RANLIB= ranlib/RANLIB= i686-linux-android-ranlib/g' src/Makefile
+      - sed -i 's/MYCFLAGS=/#MYCFLAGS=/g' src/Makefile
+      - sed -i 's/MYLDFLAGS=/#MYLDFLAGS=/g' src/Makefile
       # setup compiler environment for android cross compiler
       - export PATH="$ANDROID_NDK_HOME/toolchains/llvm/prebuilt/linux-x86_64/bin:$PATH"
       - export SYS_ROOT="$ANDROID_NDK_HOME/platforms/android-19/arch-arm/"
@@ -43,6 +45,7 @@ matrix:
       - make posix 
       - ls -l 
       - cd src
+      - make echo
       #- cat Makefile
       - ls -l
       - $STRIP lua 
