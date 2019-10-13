@@ -17,6 +17,7 @@ matrix:
       - curl -R -O http://www.lua.org/ftp/lua-5.3.5.tar.gz
       - tar zxf lua-5.3.5.tar.gz
       - cd lua-5.3.5
+      # disable internal build variables in make file to use externally set environment ariables
       - sed -i 's/CC= gcc -std=gnu99/#CC= i686-linux-android26-clang/g' src/Makefile
       - sed -i 's/PLAT= none/PLAT= posix/g' src/Makefile
       - sed -i 's/AR= ar rcu/#AR= i686-linux-android-ar rcu/g' src/Makefile
@@ -25,12 +26,12 @@ matrix:
       - sed -i 's/MYLDFLAGS=/#MYLDFLAGS=/g' src/Makefile
       # setup compiler environment for android cross compiler
       - export PATH="$ANDROID_NDK_HOME/toolchains/llvm/prebuilt/linux-x86_64/bin:$PATH"
-      - export SYS_ROOT="$ANDROID_NDK_HOME/platforms/android-19/arch-arm/"
-      - export CC="i686-linux-android26-clang"
-      - export LD="i686-linux-android-ld"
-      - export AR="i686-linux-android-ar"
-      - export RANLIB="i686-linux-android-ranlib"
-      - export STRIP="i686-linux-android-strip"
+      - export COMPILER_TARGET="i686-linux-android"
+      - export CC="$COMPILER_TARGET26-clang"
+      - export LD="$COMPILER_TARGET-ld"
+      - export AR="$COMPILER_TARGET-ar rcu"
+      - export RANLIB="$COMPILER_TARGET-ranlib"
+      - export STRIP="$COMPILER_TARGET-strip"
       - export MYCFLAGS="-fPIC"
       - export MYLDFLAGS="-pie"
       # build version for arm
