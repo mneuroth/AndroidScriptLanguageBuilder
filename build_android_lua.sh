@@ -1,17 +1,17 @@
 #!/bin/sh
 
 export PATH="$ANDROID_NDK_HOME/toolchains/llvm/prebuilt/linux-x86_64/bin:$PATH"
-export COMPILER_TARGET="i686-linux-android"
-export CC=$COMPILER_TARGET"26-clang"
+export COMPILER_TARGET=$1
+export CC=$COMPILER_TARGET"28-clang"
 export LD=$COMPILER_TARGET"-ld"
 export AR=$COMPILER_TARGET"-ar rcu"
 export RANLIB=$COMPILER_TARGET"-ranlib"
 export STRIP=$COMPILER_TARGET"-strip"
 export MYCFLAGS="-fPIC"
 export MYLDFLAGS="-pie"
-echo $COMPILER_TARGET
-echo $SYSCFLAGS 
-echo $MYCFLAGS
+#echo $COMPILER_TARGET
+#echo $SYSCFLAGS 
+#echo $MYCFLAGS
 make echo
 make posix 
 ls -l 
@@ -21,7 +21,7 @@ make echo
 ls -l
 $STRIP lua 
 $STRIP luac 
-echo $STRIP
+zip -u ../lua-android-$COMPILER_TARGET-bin.zip lua luac
 ls -l
 #- ./lua -v
 cd ..

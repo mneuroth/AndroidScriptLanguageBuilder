@@ -27,8 +27,16 @@ matrix:
       - sed -i 's/MYLDFLAGS=/#MYLDFLAGS=/g' src/Makefile
       # setup compiler environment for android cross compiler
       - ls -lrt
-      - ../build_android_lua.sh
-      - cat ../build_android_lua.sh
+      - ../build_android_lua.sh "i686-linux-android"
+      - make clean
+      - ../build_android_lua.sh "x86_64-linux-android"
+      - make clean
+      - ../build_android_lua.sh "armv7a-linux-android"
+      - make clean
+      - ../build_android_lua.sh "aarch64-linux-android"
+      - make clean
+      - ls -lrt
+      #- cat ../build_android_lua.sh
       - echo $ANDROID_NDK_HOME
       - ls -lrt $ANDROID_NDK_HOME
       - ls -lrt $ANDROID_NDK_HOME/toolchains
