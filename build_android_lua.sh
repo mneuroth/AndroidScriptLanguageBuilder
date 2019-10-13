@@ -2,7 +2,7 @@
 
 export PATH="$ANDROID_NDK_HOME/toolchains/llvm/prebuilt/linux-x86_64/bin:$PATH"
 export COMPILER_TARGET=$1
-export CC=$COMPILER_TARGET"28-clang"
+export CC=$COMPILER_TARGET"26-clang"
 export LD=$COMPILER_TARGET"-ld"
 export AR=$COMPILER_TARGET"-ar rcu"
 export RANLIB=$COMPILER_TARGET"-ranlib"
