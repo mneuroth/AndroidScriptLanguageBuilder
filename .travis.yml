@@ -28,7 +28,7 @@ matrix:
       # setup compiler environment for android cross compiler
       - ls -lrt
       - ../build_android_lua.sh
-      - ls cat ../build_android_lua.sh
+      - cat ../build_android_lua.sh
       - echo $ANDROID_NDK_HOME
       - ls -lrt $ANDROID_NDK_HOME
       - ls -lrt $ANDROID_NDK_HOME/toolchains
