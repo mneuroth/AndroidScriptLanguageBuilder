@@ -27,15 +27,16 @@ matrix:
       # setup compiler environment for android cross compiler
       - export PATH="$ANDROID_NDK_HOME/toolchains/llvm/prebuilt/linux-x86_64/bin:$PATH"
       - export COMPILER_TARGET="i686-linux-android"
-      - export CC="$COMPILER_TARGET26-clang"
-      - export LD="$COMPILER_TARGET-ld"
-      - export AR="$COMPILER_TARGET-ar rcu"
-      - export RANLIB="$COMPILER_TARGET-ranlib"
-      - export STRIP="$COMPILER_TARGET-strip"
+      - export CC=$COMPILER_TARGET"26-clang"
+      - export LD=$COMPILER_TARGET"-ld"
+      - export AR=$COMPILER_TARGET"-ar rcu"
+      - export RANLIB=$COMPILER_TARGET"-ranlib"
+      - export STRIP=$COMPILER_TARGET"-strip"
       - export MYCFLAGS="-fPIC"
       - export MYLDFLAGS="-pie"
       # build version for arm
       #- cat Makefile
+      - echo $COMPILER_TARGET 
       - echo $SYSCFLAGS 
       - echo $MYCFLAGS
       - make echo
