@@ -1,8 +1,9 @@
 #!/bin/bash
 set -x
 echo "building Lua..."
+pwd
 ls -lrt ..
-source ../setup_ndk.sh $1 $2 $3 $4 $5
+. ../setup_ndk.sh $1 $2 $3 $4 $5
 #echo $COMPILER_TARGET
 #echo $SYSCFLAGS 
 #echo $MYCFLAGS
