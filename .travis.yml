@@ -2,11 +2,12 @@ matrix:
   include:    
     - os: linux
       language: android
-      compiler: Lua with clang
+      compiler: gcc/cmake
       android:
         components:
             - build-tools-26.0.2
             - android-26
+      name: Lua build
       before_install:
         - echo y | sdkmanager "ndk-bundle"
         - echo y | sdkmanagLr "cmake;3.6.4111459"
@@ -54,11 +55,12 @@ matrix:
 
     - os: linux
       language: android
-      compiler: Gnuplot with clang
+      compiler: gcc/cmake
       android:
         components:
             - build-tools-26.0.2
             - android-26
+      name: Gnuplot build
       before_install:
         - echo y | sdkmanager "ndk-bundle"
         - echo y | sdkmanagLr "cmake;3.6.4111459"
