@@ -1,5 +1,4 @@
 #!/bin/bash
-set -x
 echo "SETUP_NDK now..."
 export PATH="$ANDROID_NDK_HOME/toolchains/llvm/prebuilt/linux-x86_64/bin:$PATH"
 export COMPILER_TARGET=$1
