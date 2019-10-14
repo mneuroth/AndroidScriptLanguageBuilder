@@ -74,24 +74,14 @@ matrix:
       - tar zxf gnuplot-5.2.7.tar.gz
       - ls -lrt
       - cd gnuplot-5.2.7
-      - export PATH="$ANDROID_NDK_HOME/toolchains/llvm/prebuilt/linux-x86_64/bin:$PATH"
-      - export COMPILER_TARGET=i686-linux-android
-      - export TOOLS_TARGET=i686-linux-android
-      - export CC=$COMPILER_TARGET"26-clang"
-      - export LD=$TOOLS_TARGET"-ld"
-      - export AR=$TOOLS_TARGET"-ar rcu"
-      - export RANLIB=$TOOLS_TARGET"-ranlib"
-      - export STRIP=$TOOLS_TARGET"-strip"
-      - export MYCFLAGS="-fPIC"
-      - export MYLDFLAGS="-pie"
-      - export CFLAGS="-fdata-sections -ffunction-sections -funwind-tables -fstack-protector-strong -no-canonical-prefixes -mstackrealign -fno-addrsig -fPIC "
-        #--static
-      - ./configure --host=i686-linux-android --without-readline -with-qt=no --without-cairo 
-      - make -j 4
-      - cd src
       - ls -lrt
-      - $STRIP gnuplot
-      - ls -lrt
+      - ../build_android_gnuplot.sh "i686-linux-android" "i686-linux-android"
+      - make clean
+      - ../build_android_gnuplot.sh "x86_64-linux-android" "x86_64-linux-android"
+      - make clean
+      - ../build_android_gnuplot.sh "armv7a-linux-androideabi" "arm-linux-androideabi"
+      - make clean
+      - ../build_android_gnuplot.sh "aarch64-linux-android" "aarch64-linux-android"
       - make clean
       - ls -lrt
       - export GNUPLOT_DEPLOY_ROOT=`pwd`
