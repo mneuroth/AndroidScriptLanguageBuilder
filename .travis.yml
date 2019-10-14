@@ -136,6 +136,8 @@ matrix:
       - ./configure
       - make -j 4
       - ls -lrt ..
+      - ls -lrt
+      - ls -lrt src
       - make clean
       # build for android targets
       - ../build_android_newlisp.sh "i686-linux-android" "i686-linux-android" $NEWLISP_VERSION
