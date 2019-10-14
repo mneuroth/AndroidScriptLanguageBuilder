@@ -128,7 +128,7 @@ matrix:
       - ls -lrt
       - curl -R -O http://www.newlisp.org/downloads/newlisp-$NEWLISP_VERSION.tgz
       - ls -lrt
-      - tar zxf newlisp-$NEWLISP_VERSION.tar.gz
+      - tar zxf newlisp-$NEWLISP_VERSION.tgz
       - ls -lrt
       - cd newlisp-$NEWLISP_VERSION
       - ls -lrt
