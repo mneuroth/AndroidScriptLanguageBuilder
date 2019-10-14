@@ -3,6 +3,7 @@
 export PATH="$ANDROID_NDK_HOME/toolchains/llvm/prebuilt/linux-x86_64/bin:$PATH"
 export COMPILER_TARGET=$1
 export TOOLS_TARGET=$2
+export VERSION_NO=$3
 export CC=$COMPILER_TARGET"26-clang"
 export LD=$TOOLS_TARGET"-ld"
 export AR=$TOOLS_TARGET"-ar rcu"
@@ -18,7 +19,7 @@ cd src
 ls -lrt
 $STRIP gnuplot
 cp ../../gnuplot.gih .
-zip -u ../gnuplot-android-$COMPILER_TARGET-bin.zip gnuplot gnuplot.gih
+zip -u ../gnuplot-$VERSION_NO-android-$COMPILER_TARGET-bin.zip gnuplot gnuplot.gih
 ls -lrt
 #- ./gnuplot -v
 cd ..
