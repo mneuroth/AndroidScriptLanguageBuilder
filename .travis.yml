@@ -2,14 +2,14 @@ matrix:
   include:    
     - os: linux
       language: android
-      compiler: gcc/cmake
+      compiler: Lua with clang
       android:
         components:
             - build-tools-26.0.2
             - android-26
       before_install:
         - echo y | sdkmanager "ndk-bundle"
-        - echo y | sdkmanager "cmake;3.6.4111459"
+        - echo y | sdkmanagLr "cmake;3.6.4111459"
         - echo y | sdkmanager "lldb;3.1"
       before_script:
         - export ANDROID_NDK_HOME=$ANDROID_HOME/ndk-bundle
@@ -48,6 +48,60 @@ matrix:
           - $LUA_DEPLOY_ROOT/lua-android-x86_64-linux-android-bin.zip
           - $LUA_DEPLOY_ROOT/lua-android-armv7a-linux-androideabi-bin.zip
           - $LUA_DEPLOY_ROOT/lua-android-aarch64-linux-android-bin.zip
+        skip_cleanup: true
+        on:
+          tags: true
+
+    - os: linux
+      language: android
+      compiler: Gnuplot with clang
+      android:
+        components:
+            - build-tools-26.0.2
+            - android-26
+      before_install:
+        - echo y | sdkmanager "ndk-bundle"
+        - echo y | sdkmanagLr "cmake;3.6.4111459"
+        - echo y | sdkmanager "lldb;3.1"
+      before_script:
+        - export ANDROID_NDK_HOME=$ANDROID_HOME/ndk-bundle
+      script:
+      - ls -lrt
+      - curl -R -O https://sourceforge.net/projects/gnuplot/files/gnuplot/5.2.7/gnuplot-5.2.7.tar.gz
+      - ls -lrt
+      - tar zxf gnuplot-5.2.7.tar.gz
+      - ls -lrt
+      - cd gnuplot-5.2.7
+      - export PATH="$ANDROID_NDK_HOME/toolchains/llvm/prebuilt/linux-x86_64/bin:$PATH"
+      - export COMPILER_TARGET=i686-linux-android
+      - export TOOLS_TARGET=i686-linux-android
+      - export CC=$COMPILER_TARGET"26-clang"
+      - export LD=$TOOLS_TARGET"-ld"
+      - export AR=$TOOLS_TARGET"-ar rcu"
+      - export RANLIB=$TOOLS_TARGET"-ranlib"
+      - export STRIP=$TOOLS_TARGET"-strip"
+      - export MYCFLAGS="-fPIC"
+      - export MYLDFLAGS="-pie"
+      - export CFLAGS="-fdata-sections -ffunction-sections -funwind-tables -fstack-protector-strong -no-canonical-prefixes -mstackrealign -fno-addrsig -fPIC "
+        #--static
+      - ./configure --host=i686-linux-android --without-readline -with-qt=no --without-cairo 
+      - make -j 4
+      - cd src
+      - ls -lrt
+      - $STRIP gnuplot
+      - ls -lrt
+      - make clean
+      - ls -lrt
+      - export GNUPLOT_DEPLOY_ROOT=`pwd`
+      deploy:
+        provider: releases
+        api_key:
+          secure: yguu02IQ69zMGNLTfGH1DuOuAwjK0nqV1Fy6jvhl1l0eo5O7JuxgLjESp83InFBZFJ4Bx4amfOTm/NvblGM/lvJOJao8pEVcsOsxRKU4BRIN1u8zWsUJthkGK3rj21lTPtEy6PU+fT49G1TbWyQkgX18jmfxDq4TDuiUAU3b6ZYDUZdKODVtrE5NN6tSlb4MOsBTcXWnf4MSt7Nej9mpoL9AOWbFRpXo3zwg84xUz9iJW3TClC7HDVGTbzBuikDwN5ouN6RD424Q1U+WFZoLadAtdlW9quM4yhUR/TCQD/PB0iz77OBGq4+ZT/LoJ/a1Q7G7XaHxS1tn5PqzRc7fx2TaYfMRwS318l+g+6i7xlEgPEHhrOL7R0o27fYQtJ7Qdh8DZ7bPItVvya8nSoA2e/QHPFuvnFO4GJ7HYptv5u2kBRn2s6IThsmlrOp25esiudODqUwoMQy9cyyfK3wviBKWGapmeZ5YY0Q5AsdCjygWFXWgEJP/BwhtBX0LKCeY4TAiA1skZTxKvzfHdHb635BNQVysUIA/eGnAk8RtU/aFKGYI5+dHu2kZB912MPKgzn2RZMfQyaimyVAKoOsrM/IrpKGvaaivZysv/bbCI35Ik1uYXEvoKFa8CxLv46pc2VfMuChZk72r0nudy2qGNZpmxr+azRWanxjWMe4QJ4s=
+        file: 
+          - $GNUPLOT_DEPLOY_ROOT/gnuplot-android-i686-linux-android-bin.zip
+          - $GNUPLOT_DEPLOY_ROOT/gnuplot-android-x86_64-linux-android-bin.zip
+          - $GNUPLOT_DEPLOY_ROOT/gnuplot-android-armv7a-linux-androideabi-bin.zip
+          - $GNUPLOT_DEPLOY_ROOT/gnuplot-android-aarch64-linux-android-bin.zip
         skip_cleanup: true
         on:
           tags: true
