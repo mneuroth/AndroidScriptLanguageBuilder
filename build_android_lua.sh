@@ -3,6 +3,7 @@
 export PATH="$ANDROID_NDK_HOME/toolchains/llvm/prebuilt/linux-x86_64/bin:$PATH"
 export COMPILER_TARGET=$1
 export TOOLS_TARGET=$2
+export VERSION_NO=$3
 export CC=$COMPILER_TARGET"26-clang"
 export LD=$TOOLS_TARGET"-ld"
 export AR=$TOOLS_TARGET"-ar rcu"
@@ -22,7 +23,7 @@ cd src
 ls -lrt
 $STRIP lua 
 $STRIP luac 
-zip -u ../lua-android-$COMPILER_TARGET-bin.zip lua luac
+zip -u ../lua-$VERSION_NO-android-$COMPILER_TARGET-bin.zip lua luac
 ls -lrt
 #- ./lua -v
 cd ..
