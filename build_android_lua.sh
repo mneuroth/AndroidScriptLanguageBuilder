@@ -1,4 +1,5 @@
 #!/bin/bash
+echo "building Lua..."
 source ../setup_ndk.sh $1 $2 $3 $4 $5
 #echo $COMPILER_TARGET
 #echo $SYSCFLAGS 
