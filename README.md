@@ -1,6 +1,6 @@
 # Android script language builder
 This project contains build scripts to automatically create binary executables of script languages for the android platform.
-See the releases of this project for (binary deployment packages)[https://github.com/mneuroth/AndroidScriptLanguageBuilder/releases].
+For the [binary deployment packages](https://github.com/mneuroth/AndroidScriptLanguageBuilder/releases) see the [release page](https://github.com/mneuroth/AndroidScriptLanguageBuilder/releases) of this project.
 
 This scripting languages are supported:
 - [Lua](https://www.lua.org/)
