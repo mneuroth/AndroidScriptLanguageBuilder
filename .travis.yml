@@ -79,6 +79,11 @@ matrix:
       - ./configure
       - make -j 4 || true 
       - ls -lrt
+      - ls -lrt src
+      - ls -lrt docs
+      - cp docs/gnuplot.gih ..
+      - ls -lrt ..
+      - make clean
       # build for android targets
       - ../build_android_gnuplot.sh "i686-linux-android" "i686-linux-android"
       - make clean
