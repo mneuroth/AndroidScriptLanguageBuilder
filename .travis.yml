@@ -19,10 +19,10 @@ matrix:
       - curl -R -O http://www.lua.org/ftp/lua-$LUA_VERSION.tar.gz
       - tar zxf lua-$LUA_VERSION.tar.gz
       - ls -lrt
-      - . setup_ndk.sh "i686-linux-android" "i686-linux-android" $LUA_VERSION
+      - . ./setup_ndk.sh "i686-linux-android" "i686-linux-android" $LUA_VERSION
       - echo $CC
       - echo $PATH
-      - setup_ndk.sh "i686-linux-android" "i686-linux-android" $LUA_VERSION
+      - ./setup_ndk.sh "i686-linux-android" "i686-linux-android" $LUA_VERSION
       - echo $CC
       - echo $PATH
       - cd lua-$LUA_VERSION
