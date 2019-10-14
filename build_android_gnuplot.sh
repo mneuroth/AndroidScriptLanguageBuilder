@@ -16,7 +16,7 @@ make -j 4 || true   # ignore build error when cross compiling
 ls -l 
 cd src
 ls -l
-$STRIP g nuplot
+$STRIP gnuplot
 zip -u ../gnuplot-android-i686-linux-android-bin.zip gnuplot
 ls -l
 #- ./gnuplot -v
