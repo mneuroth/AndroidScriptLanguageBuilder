@@ -17,7 +17,8 @@ ls -lrt
 cd src
 ls -lrt
 $STRIP gnuplot
-zip -u ../gnuplot-android-$COMPILER_TARGET-bin.zip gnuplot
+cp ../../gnuplot.gih .
+zip -u ../gnuplot-android-$COMPILER_TARGET-bin.zip gnuplot gnuplot.gih
 ls -lrt
 #- ./gnuplot -v
 cd ..
