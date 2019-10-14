@@ -15,14 +15,14 @@ export MYLDFLAGS="-pie"
 #echo $MYCFLAGS
 #make echo
 make posix 
-ls -l 
+ls -lrt 
 cd src
 #make echo
 #- cat Makefile
-ls -l
+ls -lrt
 $STRIP lua 
 $STRIP luac 
 zip -u ../lua-android-$COMPILER_TARGET-bin.zip lua luac
-ls -l
+ls -lrt
 #- ./lua -v
 cd ..

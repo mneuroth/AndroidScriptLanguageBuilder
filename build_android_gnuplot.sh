@@ -13,11 +13,11 @@ export MYLDFLAGS="-pie"
 export CFLAGS="-fdata-sections -ffunction-sections -funwind-tables -fstack-protector-strong -no-canonical-prefixes -mstackrealign -fno-addrsig -fPIC "
 ./configure --host=i686-linux-android --without-readline -with-qt=no --without-cairo 
 make -j 4 || true   # ignore build error when cross compiling
-ls -l 
+ls -lrt 
 cd src
-ls -l
+ls -lrt
 $STRIP gnuplot
-zip -u ../gnuplot-android-i686-linux-android-bin.zip gnuplot
-ls -l
+zip -u ../gnuplot-android-$COMPILER_TARGET-bin.zip gnuplot
+ls -lrt
 #- ./gnuplot -v
 cd ..
