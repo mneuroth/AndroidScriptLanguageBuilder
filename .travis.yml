@@ -75,6 +75,11 @@ matrix:
       - ls -lrt
       - cd gnuplot-5.2.7
       - ls -lrt
+      # build for the host
+      - ./configure
+      - make -j 4 || true 
+      - ls -lrt
+      # build for android targets
       - ../build_android_gnuplot.sh "i686-linux-android" "i686-linux-android"
       - make clean
       - ../build_android_gnuplot.sh "x86_64-linux-android" "x86_64-linux-android"
