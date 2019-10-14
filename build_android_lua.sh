@@ -3,7 +3,7 @@ set -x
 echo "building Lua..."
 pwd
 ls -lrt ..
-. ../setup_ndk.sh $1 $2 $3 $4 $5
+. ../setup_ndk.sh $1 $2 $3
 #echo $COMPILER_TARGET
 #echo $SYSCFLAGS 
 #echo $MYCFLAGS
