@@ -18,15 +18,6 @@ matrix:
       script:
       - curl -R -O http://www.lua.org/ftp/lua-$LUA_VERSION.tar.gz
       - tar zxf lua-$LUA_VERSION.tar.gz
-      - which sh
-      - which bash
-      - ls -lrt
-      - . ./setup_ndk.sh "i686-linux-android" "i686-linux-android" $LUA_VERSION
-      - echo $CC
-      - echo $PATH
-      - ./setup_ndk.sh "i686-linux-android" "i686-linux-android" $LUA_VERSION
-      - echo $CC
-      - echo $PATH
       - cd lua-$LUA_VERSION
       # disable internal build variables in make file to use externally set environment ariables
       - sed -i 's/CC= gcc -std=gnu99/#CC= i686-linux-android26-clang/g' src/Makefile

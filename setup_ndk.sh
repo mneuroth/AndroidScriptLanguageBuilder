@@ -11,6 +11,4 @@ export RANLIB=$TOOLS_TARGET"-ranlib"
 export STRIP=$TOOLS_TARGET"-strip"
 export MYCFLAGS="-fPIC"
 export MYLDFLAGS="-pie"
-echo $CC
-echo $COMPILER_TARGET
 echo "SETUP_NDK done."

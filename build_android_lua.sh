@@ -1,7 +1,6 @@
 #!/bin/bash
-set -x
+#set -x
 echo "building Lua..."
-pwd
 ls -lrt ..
 . ../setup_ndk.sh $1 $2 $3
 #echo $COMPILER_TARGET
