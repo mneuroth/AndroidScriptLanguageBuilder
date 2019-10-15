@@ -1,6 +1,6 @@
 #!/bin/bash
 #set -x
-echo "building Gnuplot..."
+echo "building gnuplot..."
 . ../setup_ndk.sh $1 $2 $3
 export CFLAGS="-fdata-sections -ffunction-sections -funwind-tables -fstack-protector-strong -no-canonical-prefixes -mstackrealign -fno-addrsig -fPIC "
 ./configure --host=i686-linux-android --without-readline -with-qt=no --without-cairo 

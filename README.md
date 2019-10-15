@@ -4,10 +4,10 @@ For the [binary deployment packages](https://github.com/mneuroth/AndroidScriptLa
 
 This scripting languages are supported:
 - [Lua](https://www.lua.org/)
-- [Gnuplot](http://gnuplot.info/)
+- [gnuplot](http://gnuplot.info/)
+- [newLISP](http://www.newlisp.org/)
 
 This scripting languages are candidates to support: 
-- [newLisp](http://www.newlisp.org/)
 - [ecl](https://common-lisp.net/project/ecl/)
 - [scheme48](http://s48.org/)
 - [hugs](https://www.haskell.org/hugs/)
