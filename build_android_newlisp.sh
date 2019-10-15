@@ -1,7 +1,7 @@
 #!/bin/bash
 #set -x
 echo "building newlisp..."
-. ./setup_ndk.sh $1 $2 $3
+. ../setup_ndk.sh $1 $2 $3
 cat configure
 ./configure --help
 ./configure --host=i686-linux-android # --without-readline -with-qt=no --without-cairo 
