@@ -1,8 +1,9 @@
 #!/bin/bash
 #set -x
 echo "building Gnuplot..."
-. /home/travis/build/mneuroth/AndroidScriptLanguageBuilder/setup_ndk.sh $1 $2 $3
+. ./setup_ndk.sh $1 $2 $3
 export CFLAGS="-fdata-sections -ffunction-sections -funwind-tables -fstack-protector-strong -no-canonical-prefixes -mstackrealign -fno-addrsig -fPIC "
+./configure --help
 ./configure --host=i686-linux-android --without-readline -with-qt=no --without-cairo 
 make -j 4 || true   # ignore build error when cross compiling
 ls -lrt 
