@@ -131,7 +131,7 @@ matrix:
       - tar zxf newlisp-$NEWLISP_VERSION.tgz
       - ls -lrt
       - cd newlisp-$NEWLISP_VERSION
-      - sed -i 's/#if defined(LINUX) || defined(KFREEBSD)/#ifdef NOT_ENABLED/g' nl-filesys.c
+      - sed -i '56 s/#if defined(LINUX) || defined(KFREEBSD)/#ifdef NOT_ENABLED/g' nl-filesys.c
       - ls -lrt
       # build for the host
       - ./configure
