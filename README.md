@@ -6,9 +6,9 @@ This scripting languages are supported:
 - [Lua](https://www.lua.org/)
 - [gnuplot](http://gnuplot.info/)
 - [newLISP](http://www.newlisp.org/)
+- [ecl](https://common-lisp.net/project/ecl/)
 
 This scripting languages are candidates to support: 
-- [ecl](https://common-lisp.net/project/ecl/)
 - [scheme48](http://s48.org/)
 - [hugs](https://www.haskell.org/hugs/)
 - [Python](https://www.python.org/)
