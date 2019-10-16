@@ -167,7 +167,7 @@ matrix:
         components:
             - build-tools-26.0.2
             - android-26
-      name: ecl (lisp) build
+      name: ECL (Lisp) build
       before_install:
         - echo y | sdkmanager "ndk-bundle"
         - echo y | sdkmanager "cmake;3.6.4111459"
@@ -177,7 +177,7 @@ matrix:
         - export ECL_VERSION=16.1.3
       script:
       - curl -R -O https://common-lisp.net/project/ecl/static/files/release/ecl-$ECL_VERSION.tgz
-      - tar zxf cl-$ECL_VERSION.tgz
+      - tar zxf ecl-$ECL_VERSION.tgz
       - ls -lrt
       - cd ecl-$ECL_VERSION
       - ls -lrt

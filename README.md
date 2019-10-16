@@ -6,7 +6,7 @@ This scripting languages are supported:
 - [Lua](https://www.lua.org/)
 - [gnuplot](http://gnuplot.info/)
 - [newLISP](http://www.newlisp.org/)
-- [ecl](https://common-lisp.net/project/ecl/)
+- [ECL (Embeddable Common-Lisp)](https://common-lisp.net/project/ecl/)
 
 This scripting languages are candidates to support: 
 - [scheme48](http://s48.org/)

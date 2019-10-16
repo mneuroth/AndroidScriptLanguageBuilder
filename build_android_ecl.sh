@@ -1,6 +1,6 @@
 #!/bin/bash
 #set -x
-echo "building ecl..."
+echo "building ECL..."
 . ../setup_ndk.sh $1 $2 $3
 ./configure
 make 
