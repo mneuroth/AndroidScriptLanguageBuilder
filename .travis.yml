@@ -131,6 +131,7 @@ matrix:
       # build for the host
       - ./configure
       - make -j 4
+      - ./newlisp -v
       - ls -lrt
       - make clean
       # after building for the host, patch sources for android

@@ -16,7 +16,7 @@ default: $(OBJS)
 #	$(CC) $(OBJS) -m32 -g -lm -ldl -lreadline -o newlisp # for UBUNTU Debian
 #	$(CC) $(OBJS) -m32 -g -lm -ldl -lreadline -lncurses -o newlisp # other Linux Dist
 	$(CC) $(OBJS) -m32 -g -lm -ldl -o newlisp # without readline support
-	strip newlisp
+	$(STRIP) newlisp
 
 .c.o:
 	$(CC) $(CFLAGS) $<
