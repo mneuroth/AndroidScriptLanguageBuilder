@@ -125,19 +125,16 @@ matrix:
         - export ANDROID_NDK_HOME=$ANDROID_HOME/ndk-bundle
         - export NEWLISP_VERSION=10.7.5
       script:
-      - ls -lrt
       - curl -R -O http://www.newlisp.org/downloads/newlisp-$NEWLISP_VERSION.tgz
-      - ls -lrt
       - tar zxf newlisp-$NEWLISP_VERSION.tgz
-      - ls -lrt
       - cd newlisp-$NEWLISP_VERSION
-      - sed -i '56 s/#if defined(LINUX) || defined(KFREEBSD)/#ifdef NOT_ENABLED/g' nl-filesys.c
-      - ls -lrt
       # build for the host
       - ./configure
       - make -j 4
       - ls -lrt
       - make clean
+      # after building for the host, patch sources for android
+      - sed -i '56 s/#if defined(LINUX) || defined(KFREEBSD)/#ifdef NOT_ENABLED/g' nl-filesys.c
       # build for android targets
       - ../build_android_newlisp.sh "i686-linux-android" "i686-linux-android" $NEWLISP_VERSION
       - make clean
