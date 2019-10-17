@@ -193,11 +193,16 @@ matrix:
       - ls -lrt src
       - ls -lrt build
       - ls -lrt build/bin
+      - ls -lrt ecl-android-host
       - cd build
-      - ./ecl_min -v
+      - ./ecl_min ../examples/asdf/file1.lisp
       - cd ..
+      - export PATH=$PATH:`pwd`/ecl-android-host
       - which ecl
       - which ecl_min
+      - cd ecl-android-host
+      - ./ecl ../examples/asdf/file1.lisp
+      - cd ..
       - rm -r build
       - export ECL_TO_RUN=`pwd`/ecl-android-host/bin/ecl
       - ls -lrt
