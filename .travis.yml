@@ -190,9 +190,14 @@ matrix:
       - make -j 4
       - make install
       - ls -lrt
-      - ls -lrt build
       - ls -lrt src
-      - ./build/ecl -v
+      - ls -lrt build
+      - ls -lrt build/bin
+      - cd build
+      - ./ecl_min -v
+      - cd ..
+      - which ecl
+      - which ecl_min
       - rm -r build
       - export ECL_TO_RUN=`pwd`/ecl-android-host/bin/ecl
       - ls -lrt
