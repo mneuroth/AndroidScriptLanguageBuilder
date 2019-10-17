@@ -195,14 +195,10 @@ matrix:
       - ls -lrt build/bin
       - ls -lrt ecl-android-host
       - ls -lrt ecl-android-host/bin
-      - cd build
-      - ./ecl_min ../examples/asdf/file1.lisp
-      - cd ..
-      - export PATH=$PATH:`pwd`/ecl-android-host
+      - export PATH=$PATH:`pwd`/ecl-android-host/bin
       - which ecl
-      - which ecl_min
       - cd ecl-android-host/bin
-      - ./ecl ../examples/asdf/file1.lisp
+      - ./ecl --norc --shell ../../examples/asdf/file1.lisp
       - cd ../..
       - rm -r build
       - export ECL_TO_RUN=`pwd`/ecl-android-host/bin/ecl
