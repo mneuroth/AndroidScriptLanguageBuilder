@@ -194,26 +194,32 @@ matrix:
       - ls -lrt build
       - ls -lrt build/bin
       - ls -lrt ecl-android-host
+      - ls -lrt ecl-android-host/bin
       - cd build
       - ./ecl_min ../examples/asdf/file1.lisp
       - cd ..
       - export PATH=$PATH:`pwd`/ecl-android-host
       - which ecl
       - which ecl_min
-      - cd ecl-android-host
+      - cd ecl-android-host/bin
       - ./ecl ../examples/asdf/file1.lisp
-      - cd ..
+      - cd ../..
       - rm -r build
       - export ECL_TO_RUN=`pwd`/ecl-android-host/bin/ecl
       - ls -lrt
       - make clean
       # build for android targets
+      - ls -lrt $ANDROID_NDK_HOME/platforms/android-26
+      - export SYS_ROOT="$ANDROID_NDK_HOME/platforms/android-26/arch-arm/"
       - ../build_android_ecl.sh "i686-linux-android" "i686-linux-android" $ECL_VERSION
       - make clean
+      - export SYS_ROOT="$ANDROID_NDK_HOME/platforms/android-26/arch-arm64/"
       - ../build_android_ecl.sh "x86_64-linux-android" "x86_64-linux-android" $ECL_VERSION
       - make clean
+      - export SYS_ROOT="$ANDROID_NDK_HOME/platforms/android-26/arch-x86/"
       - ../build_android_ecl.sh "armv7a-linux-androideabi" "arm-linux-androideabi" $ECL_VERSION
       - make clean
+      - export SYS_ROOT="$ANDROID_NDK_HOME/platforms/android-26/arch-x86_64/"
       - ../build_android_ecl.sh "aarch64-linux-android" "aarch64-linux-android" $ECL_VERSION
       - make clean
       - ls -lrt
