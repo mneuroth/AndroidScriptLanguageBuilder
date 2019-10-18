@@ -200,10 +200,10 @@ matrix:
       - cd ecl-android-host/bin
       - ./ecl --norc --shell ../../examples/asdf/file1.lisp
       - cd ../..
+      - make clean
       - rm -r build
       - export ECL_TO_RUN=`pwd`/ecl-android-host/bin/ecl
       - ls -lrt
-      - make clean
       # build for android targets
       - ls -lrt $ANDROID_NDK_HOME/platforms/android-26
       - export SYS_ROOT="$ANDROID_NDK_HOME/platforms/android-26/arch-arm/"
