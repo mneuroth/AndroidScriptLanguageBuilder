@@ -184,26 +184,23 @@ matrix:
       - ls -lrt
       - cd ecl
       # build for the host
-      - ./configure --help
       - ./configure --prefix=`pwd`/ecl-android-host --disable-c99complex
-      #- ./configure ABI=32 CFLAGS="-m32 -g -O2" LDFLAGS="-m32 -g -O2" --prefix=`pwd`/ecl-android-host --disable-c99complex
       - make -j 4
       - make install
-      - ls -lrt
-      - ls -lrt src
-      - ls -lrt build
-      - ls -lrt build/bin
       - ls -lrt ecl-android-host
       - ls -lrt ecl-android-host/bin
+      - ls -lrt ecl-android-host/lib
+      - ls -lrt ecl-android-host/share
+      - ls -lrt ecl-android-host/include
       - export PATH=$PATH:`pwd`/ecl-android-host/bin
       - which ecl
       - cd ecl-android-host/bin
+      - ./ecl --version
       - ./ecl --norc --shell ../../examples/asdf/file1.lisp
       - cd ../..
       - make clean
       - rm -r build
       - export ECL_TO_RUN=`pwd`/ecl-android-host/bin/ecl
-      - ls -lrt
       # build for android targets
       - ls -lrt $ANDROID_NDK_HOME/platforms/android-26
       - export SYS_ROOT="$ANDROID_NDK_HOME/platforms/android-26/arch-arm/"
@@ -219,6 +216,7 @@ matrix:
       - ../build_android_ecl.sh "aarch64-linux-android" "aarch64-linux-android" $ECL_VERSION
       - make clean
       - ls -lrt
+      - ls .. -lrt
       - export ECL_DEPLOY_ROOT=`pwd`
       deploy:
         provider: releases
