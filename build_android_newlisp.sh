@@ -2,6 +2,7 @@
 #set -x
 echo "building newLISP..."
 . ../setup_ndk.sh $1 $2 $3
+export AR=$2"-ar"
 cp ../newlisp.patch/makefile_android .
 #ls -lrt
 #cat configure
