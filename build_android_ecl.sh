@@ -11,9 +11,11 @@ ls -lrt
 ls -lrt build
 ls -lrt build/bin
 ls -lrt build/ecl
-cd build/ecl
+cd build/bin
 $STRIP ecl
-zip -u ../../../ecl-$VERSION_NO-android-$COMPILER_TARGET-bin.zip ecl *.so
+zip -u ../../../ecl-$VERSION_NO-android-$COMPILER_TARGET-bin.zip ecl
+cd ..
+zip -u ../../ecl-$VERSION_NO-android-$COMPILER_TARGET-bin.zip *.so
 #- ./ecl -v
 cd ..
 cd ..
