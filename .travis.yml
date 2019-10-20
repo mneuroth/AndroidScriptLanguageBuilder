@@ -254,6 +254,8 @@ matrix:
       - ls -lrt
       - tar zxf unzip$UNZIP_VERSION.tar.gz 
       - cd unzip$UNZIP_VERSION
+      # disable internal build variables in make file to use externally set environment ariables
+      - sed -i '45 s/CC = cc/#CC = cc/g' unix/Makefile
       # setup compiler environment for android cross compiler
       - ls -lrt
       - make -f unix/Makefile generic
