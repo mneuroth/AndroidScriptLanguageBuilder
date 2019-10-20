@@ -271,16 +271,19 @@ matrix:
       - echo $CC
       - make -f unix/Makefile generic
       - ls -lrt
+      - zip -u ../unzip$UNZIP_VERSION-android-x86_64-linux-android-bin.zip unzip
       - make -f unix/Makefile clean
       - . ../setup_ndk.sh "armv7a-linux-androideabi" "arm-linux-androideabi" $UNZIP_VERSION
       - echo $CC
       - make -f unix/Makefile generic
       - ls -lrt
+      - zip -u ../unzip$UNZIP_VERSION-android-arm-linux-androideabi-bin.zip unzip
       - make -f unix/Makefile clean
       - . ../setup_ndk.sh "aarch64-linux-android" "aarch64-linux-android" $UNZIP_VERSION
       - echo $CC
       - make -f unix/Makefile generic
       - ls -lrt
+      - zip -u ../unzip$UNZIP_VERSION-android-aarch64-linux-android-bin.zip unzip
       - make -f unix/Makefile clean
       - ls -lrt
       #- ls -lrt $ANDROID_NDK_HOME/toolchains/llvm/prebuilt/linux-x86_64/bin
