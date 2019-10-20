@@ -249,9 +249,11 @@ matrix:
         - export ANDROID_NDK_HOME=$ANDROID_HOME/ndk-bundle
         - export UNZIP_VERSION=60
       script:
-      - curl -L https://downloads.sourceforge.net/infozip/unzip$UNZIP_VERSION.tgz >unzip$UNZIP_VERSION.tgz 
-      - tar zxf unzip$UNZIP_VERSION.tgz 
-      - cd unzip$UNZIP_VERSION.tgz 
+      - echo https://downloads.sourceforge.net/infozip/unzip$UNZIP_VERSION.tar.gz
+      - curl -L https://downloads.sourceforge.net/infozip/unzip$UNZIP_VERSION.tar.gz >unzip$UNZIP_VERSION.tar.gz 
+      - ls -lrt
+      - tar zxf unzip$UNZIP_VERSION.tar.gz 
+      - cd unzip$UNZIP_VERSION
       # setup compiler environment for android cross compiler
       - ls -lrt
       - make -f unix/Makefile generic
@@ -261,15 +263,15 @@ matrix:
       - make -f unix/Makefile generic
       - ls -lrt
       - make clean
-      - . ../setup_ndk.sh "x86_64-linux-android" "x86_64-linux-android" $LUA_VERSION
+      - . ../setup_ndk.sh "x86_64-linux-android" "x86_64-linux-android" $UNZIP_VERSION
       - make -f unix/Makefile generic
       - ls -lrt
       - make clean
-      - . ../setup_ndk.sh "armv7a-linux-androideabi" "arm-linux-androideabi" $LUA_VERSION
+      - . ../setup_ndk.sh "armv7a-linux-androideabi" "arm-linux-androideabi" $UNZIP_VERSION
       - make -f unix/Makefile generic
       - ls -lrt
       - make clean
-      - . ../setup_ndk.sh "aarch64-linux-android" "aarch64-linux-android" $LUA_VERSION
+      - . ../setup_ndk.sh "aarch64-linux-android" "aarch64-linux-android" $UNZIP_VERSION
       - make -f unix/Makefile generic
       - ls -lrt
       - make clean
