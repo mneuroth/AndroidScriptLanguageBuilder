@@ -259,25 +259,32 @@ matrix:
       - make -f unix/Makefile generic
       - ls -lrt 
       - make -f unix/Makefile clean
-      - . ../setup_ndk.sh i686-linux-android" "i686-linux-android" $UNZIP_VERSION
-      - make -f unix/Makefile generic
+      - . ../setup_ndk.sh "i686-linux-android" "i686-linux-android" $UNZIP_VERSION
+      - echo $CC
+      - make -f unix/Makefile generic      
       - ls -lrt
-      - make clean
+      - zip -u ../unzip$UNZIP_VERSION-android-i686-linux-android-bin.zip unzip
+      - make -f unix/Makefile clean
       - . ../setup_ndk.sh "x86_64-linux-android" "x86_64-linux-android" $UNZIP_VERSION
+      - echo $CC
       - make -f unix/Makefile generic
       - ls -lrt
-      - make clean
+      - make -f unix/Makefile clean
       - . ../setup_ndk.sh "armv7a-linux-androideabi" "arm-linux-androideabi" $UNZIP_VERSION
+      - echo $CC
       - make -f unix/Makefile generic
       - ls -lrt
-      - make clean
+      - make -f unix/Makefile clean
       - . ../setup_ndk.sh "aarch64-linux-android" "aarch64-linux-android" $UNZIP_VERSION
+      - echo $CC
       - make -f unix/Makefile generic
       - ls -lrt
-      - make clean
+      - make -f unix/Makefile clean
       - ls -lrt
       #- ls -lrt $ANDROID_NDK_HOME/toolchains/llvm/prebuilt/linux-x86_64/bin
       #- pwd
+      - cd ..
+      - ls -lrt
       - export UNZIP_DEPLOY_ROOT=`pwd`
       deploy:
         provider: releases
