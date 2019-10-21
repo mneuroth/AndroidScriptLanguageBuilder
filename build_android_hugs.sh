@@ -15,4 +15,4 @@ cp ../../gnuplot.gih .
 zip -u ../../hugs98-plus-$VERSION_NO-android-$COMPILER_TARGET-bin.zip hugs runhugs
 ls -lrt
 #- ./hugs -v
-cd ..
+cd .. 
