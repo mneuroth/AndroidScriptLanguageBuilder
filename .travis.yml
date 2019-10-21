@@ -330,9 +330,9 @@ matrix:
       script:
       - curl -R -O https://www.haskell.org/hugs/downloads/2006-09/hugs98-plus-Sep2006.tar.gz
       - ls -lrt
-      - tar zxf hugs-plus-$HUGS_VERSION.tar.gz
+      - tar zxf hugs98-plus-$HUGS_VERSION.tar.gz
       - ls -lrt
-      - cd hugs-plus-$HUGS_VERSION
+      - cd hugs98-plus-$HUGS_VERSION
       - ls -lrt
       # build for the host
       - ./configure
@@ -356,10 +356,10 @@ matrix:
         api_key:
           secure: yguu02IQ69zMGNLTfGH1DuOuAwjK0nqV1Fy6jvhl1l0eo5O7JuxgLjESp83InFBZFJ4Bx4amfOTm/NvblGM/lvJOJao8pEVcsOsxRKU4BRIN1u8zWsUJthkGK3rj21lTPtEy6PU+fT49G1TbWyQkgX18jmfxDq4TDuiUAU3b6ZYDUZdKODVtrE5NN6tSlb4MOsBTcXWnf4MSt7Nej9mpoL9AOWbFRpXo3zwg84xUz9iJW3TClC7HDVGTbzBuikDwN5ouN6RD424Q1U+WFZoLadAtdlW9quM4yhUR/TCQD/PB0iz77OBGq4+ZT/LoJ/a1Q7G7XaHxS1tn5PqzRc7fx2TaYfMRwS318l+g+6i7xlEgPEHhrOL7R0o27fYQtJ7Qdh8DZ7bPItVvya8nSoA2e/QHPFuvnFO4GJ7HYptv5u2kBRn2s6IThsmlrOp25esiudODqUwoMQy9cyyfK3wviBKWGapmeZ5YY0Q5AsdCjygWFXWgEJP/BwhtBX0LKCeY4TAiA1skZTxKvzfHdHb635BNQVysUIA/eGnAk8RtU/aFKGYI5+dHu2kZB912MPKgzn2RZMfQyaimyVAKoOsrM/IrpKGvaaivZysv/bbCI35Ik1uYXEvoKFa8CxLv46pc2VfMuChZk72r0nudy2qGNZpmxr+azRWanxjWMe4QJ4s=
         file: 
-          - $HUGS_DEPLOY_ROOT/hugs-plus-$HUGS_VERSION-android-i686-linux-android-bin.zip
-          - $HUGS_DEPLOY_ROOT/hugs-plus-$HUGS_VERSION-android-x86_64-linux-android-bin.zip
-          - $HUGS_DEPLOY_ROOT/hugs-plus-$HUGS_VERSION-android-armv7a-linux-androideabi-bin.zip
-          - $HUGS_DEPLOY_ROOT/hugs-plus-$HUGS_VERSION-android-aarch64-linux-android-bin.zip
+          - $HUGS_DEPLOY_ROOT/hugs98-plus-$HUGS_VERSION-android-i686-linux-android-bin.zip
+          - $HUGS_DEPLOY_ROOT/hugs98-plus-$HUGS_VERSION-android-x86_64-linux-android-bin.zip
+          - $HUGS_DEPLOY_ROOT/hugs98-plus-$HUGS_VERSION-android-armv7a-linux-androideabi-bin.zip
+          - $HUGS_DEPLOY_ROOT/hugs98-plus-$HUGS_VERSION-android-aarch64-linux-android-bin.zip
         skip_cleanup: true
         on:
           tags: true          
