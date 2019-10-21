@@ -339,16 +339,18 @@ matrix:
       - make -j 4 || true 
       - ls -lrt
       - ls -lrt src
-      #- make clean
+      - make clean
       # build for android targets
-      #- ../build_android_hugs.sh "i686-linux-android" "i686-linux-android" $HUGS_VERSION
-      #- make clean
-      #- ../build_android_hugs.sh "x86_64-linux-android" "x86_64-linux-android" $HUGS_VERSION
-      #- make clean
-      #- ../build_android_hugs.sh "armv7a-linux-androideabi" "arm-linux-androideabi" $HUGS_VERSION
-      #- make clean
-      #- ../build_android_hugs.sh "aarch64-linux-android" "aarch64-linux-android" $HUGS_VERSION
-      #- make clean
+      - ../build_android_hugs.sh "i686-linux-android" "i686-linux-android" $HUGS_VERSION
+      - make clean
+      - ../build_android_hugs.sh "x86_64-linux-android" "x86_64-linux-android" $HUGS_VERSION
+      - make clean
+      - ../build_android_hugs.sh "armv7a-linux-androideabi" "arm-linux-androideabi" $HUGS_VERSION
+      - make clean
+      - ../build_android_hugs.sh "aarch64-linux-android" "aarch64-linux-android" $HUGS_VERSION
+      - make clean
+      - pwd
+      - cd ..
       - ls -lrt
       - export HUGS_DEPLOY_ROOT=`pwd`
       deploy:
