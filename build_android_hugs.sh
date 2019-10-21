@@ -16,3 +16,4 @@ zip -u ../../hugs98-plus-$VERSION_NO-android-$COMPILER_TARGET-bin.zip hugs runhu
 ls -lrt
 #- ./hugs -v
 cd .. 
+ls -lrt
