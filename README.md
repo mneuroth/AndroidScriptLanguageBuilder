@@ -5,6 +5,7 @@ For the [binary deployment packages](https://github.com/mneuroth/AndroidScriptLa
 This scripting languages are supported:
 - [Lua](https://www.lua.org/)
 - [gnuplot](http://gnuplot.info/)
+- [unzip](http://infozip.sourceforge.net/UnZip.html)
 - [newLISP](http://www.newlisp.org/)
 - [ECL (Embeddable Common-Lisp)](https://common-lisp.net/project/ecl/)
 
