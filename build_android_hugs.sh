@@ -17,6 +17,7 @@ sed -i 's/LIBS		= -lreadline -lncurses -lm -ldl/LIBS		= -lm -ldl/g' src/Makefile
 sed -i 's/#define HAVE_FTIME 1/#define HAVE_FTIME 0/g' src/config.h
 sed -i 's/#define HAVE_SYS_TIMEB_H 1/#define HAVE_SYS_TIMEB_H 0/g' src/config.h
 sed -i 's/\/* #undef CHAR_ENCODING_UTF8 *\//#define CHAR_ENCODING_UTF8 1/g' src/config.h
+sed -i 's/#define USE_READLINE 1/#define USE_READLINE 0/g' src/config.h
 sed -i 's/S_IREAD/S_IRUSR/g' src/machdep.c
 echo "============================"
 cat src/config.h
