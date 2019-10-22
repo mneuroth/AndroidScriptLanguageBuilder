@@ -6,10 +6,12 @@ echo "building hugs98..."
 #./configure --help
 #./configure --host=arm-linux-eabi --build=i686-pc-linux # --without-readline 
 cat src/Makefile
+cat src/config.h
 # after building for the host, patch sources for android
 sed -i 's/CC		= gcc/#CC		= gcc/g' src/Makefile
 sed -i 's/CC		= gcc/#CC		= gcc/g' src/Makefile
 sed -i 's/LD		= ld/#LD		= ld/g' src/Makefile
+sed -i 's/#define HAVE_FTIME 1/#define HAVE_FTIME 0/g' src/config.h
 make -j 4 || true   # ignore build error when cross compiling
 ls -lrt 
 cd src
