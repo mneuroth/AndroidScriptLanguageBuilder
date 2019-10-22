@@ -335,7 +335,7 @@ matrix:
       - cd hugs98-plus-$HUGS_VERSION
       - ls -lrt
       # build for the host
-      - ./configure
+      - ./configure --disable-ftime
       - make -j 4 || true 
       - ls -lrt
       - ls -lrt src
