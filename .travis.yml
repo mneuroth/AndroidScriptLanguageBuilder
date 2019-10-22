@@ -335,7 +335,7 @@ matrix:
       - cd hugs98-plus-$HUGS_VERSION
       - ls -lrt
       # build for the host
-      - ./configure --disable-readline --disable-ncurses
+      - ./configure --without-readline --without-ncurses
       - make -j 4
       - ls -lrt
       - ls -lrt src
