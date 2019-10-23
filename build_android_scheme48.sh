@@ -5,8 +5,10 @@ echo "building scheme48..."
 ./configure --help
 echo "============================"
 #./configure --host=arm-linux-eabi --build=i686-pc-linux # --without-readline 
-./configure --host=$2 --build=i686-pc-linux
+./configure --host=arm-linux-eabi --build=i686-pc-linux
 echo "============================"
+sed -i 's/CC = gcc/#CC = gcc/g' Makefile
+sed -i 's/LD = gcc/#LD = gcc/g' Makefile
 cat Makefile
 make -j 4 # || true   # ignore build error when cross compiling
 ls -lrt
