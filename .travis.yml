@@ -365,6 +365,8 @@ matrix:
       - curl -R -O http://s48.org/$SCHEME48_VERSION/scheme48-$SCHEME48_VERSION.tgz
       - tar zxf scheme48-$SCHEME48_VERSION.tgz
       - cd scheme48-$SCHEME48_VERSION
+      # patch the sources
+      - sed -i 's/*.o c\/unix\/*.o c\/posix\/*.o c\/net\/*.o c\/*.o/*.o c\/unix\/*.o c\/posix\/*.o c\/net\/*.o c\/ffi-test\/*.o c\/r6rs\/*.o c\/*.o/g' Makefile.in
       # build for the host
       - ./configure
       - make -j 4
