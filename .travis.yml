@@ -368,11 +368,14 @@ matrix:
       # build for the host
       - ./configure
       - make -j 4
+      - cp scheme48.image ..
       - ls -lrt
-      - ls -lrt c
-      - ls -lrt build
       #- scheme48 --version
       - make clean
+      - cd c
+      - ls -lrt
+      - make clean
+      - cd ..
       # build for android targets
       - ../build_android_scheme48.sh "i686-linux-android" "i686-linux-android" $SCHEME48_VERSION
       - make clean
