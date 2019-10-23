@@ -369,12 +369,13 @@ matrix:
       - sed -i 's/*.o c\/unix\/*.o c\/posix\/*.o c\/net\/*.o c\/*.o/*.o c\/unix\/*.o c\/posix\/*.o c\/net\/*.o c\/ffi-test\/*.o c\/r6rs\/*.o c\/*.o/g' Makefile.in
       # build for the host
       - ./configure
+      - sed -i 's/*.o c\/unix\/*.o c\/posix\/*.o c\/net\/*.o c\/*.o/*.o c\/unix\/*.o c\/posix\/*.o c\/net\/*.o c\/ffi-test\/*.o c\/r6rs\/*.o c\/*.o/g' Makefile
+      - cat Makefile
       - make -j 4
       - cp scheme48.image ..
       - ls -lrt
       #- scheme48 --version
       - make clean
-      - cd ..
       # build for android targets
       - ../build_android_scheme48.sh "i686-linux-android" "i686-linux-android" $SCHEME48_VERSION
       - make clean

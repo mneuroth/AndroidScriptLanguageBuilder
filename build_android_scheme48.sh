@@ -2,11 +2,11 @@
 #set -x
 echo "building scheme48..."
 . ../setup_ndk.sh $1 $2 $3
-./configure --help
-echo "============================"
+#./configure --help
+#echo "============================"
 #./configure --host=arm-linux-eabi --build=i686-pc-linux # --without-readline 
-./configure --host=arm-linux-eabi --build=i686-pc-linux
-echo "============================"
+#./configure --host=arm-linux-eabi --build=i686-pc-linux
+#echo "============================"
 sed -i 's/CC = gcc/#CC = gcc/g' Makefile
 sed -i 's/LD = gcc/#LD = gcc/g' Makefile
 sed -i 's/-shared  -rdynamic/-shared /g' Makefile
