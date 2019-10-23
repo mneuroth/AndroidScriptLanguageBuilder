@@ -8,10 +8,10 @@ This scripting languages are supported:
 - [unzip](http://infozip.sourceforge.net/UnZip.html)
 - [newLISP](http://www.newlisp.org/)
 - [ECL (Embeddable Common-Lisp)](https://common-lisp.net/project/ecl/)
+- [hugs](https://www.haskell.org/hugs/)
+- [scheme48](http://s48.org/)
 
 This scripting languages are candidates to support: 
-- [scheme48](http://s48.org/)
-- [hugs](https://www.haskell.org/hugs/)
 - [Python](https://www.python.org/)
 - [Ruby](https://www.ruby-lang.org)
 - [Perl](https://www.perl.org/)

@@ -70,13 +70,9 @@ matrix:
         - export ANDROID_NDK_HOME=$ANDROID_HOME/ndk-bundle
         - export GNUPLOT_VERSION=5.2.7
       script:
-      - ls -lrt
       - curl -L https://downloads.sourceforge.net/project/gnuplot/gnuplot/$GNUPLOT_VERSION/gnuplot-$GNUPLOT_VERSION.tar.gz >gnuplot-$GNUPLOT_VERSION.tar.gz 
-      - ls -lrt
       - tar zxf gnuplot-$GNUPLOT_VERSION.tar.gz
-      - ls -lrt
       - cd gnuplot-$GNUPLOT_VERSION
-      - ls -lrt
       # build for the host
       - ./configure
       - make -j 4 || true 
@@ -95,7 +91,6 @@ matrix:
       - make clean
       - ../build_android_gnuplot.sh "aarch64-linux-android" "aarch64-linux-android" $GNUPLOT_VERSION
       - make clean
-      - ls -lrt
       - export GNUPLOT_DEPLOY_ROOT=`pwd`
       deploy:
         provider: releases
@@ -182,7 +177,6 @@ matrix:
       #- ls -lrt
       #- cd ecl-$ECL_VERSION
       - git clone https://gitlab.com/embeddable-common-lisp/ecl.git
-      - ls -lrt
       - cd ecl
       # build for the host
       - ./configure --prefix=`pwd`/ecl-android-host --disable-c99complex
@@ -250,49 +244,37 @@ matrix:
       script:
       - echo https://downloads.sourceforge.net/infozip/unzip$UNZIP_VERSION.tar.gz
       - curl -L https://downloads.sourceforge.net/infozip/unzip$UNZIP_VERSION.tar.gz >unzip$UNZIP_VERSION.tar.gz 
-      - ls -lrt
       - tar zxf unzip$UNZIP_VERSION.tar.gz 
       - cd unzip$UNZIP_VERSION
       # disable internal build variables in make file to use externally set environment ariables
       - sed -i '45 s/CC = cc/#CC = cc/g' unix/Makefile
       # setup compiler environment for android cross compiler
-      - ls -lrt
       - make -f unix/Makefile generic
-      - ls -lrt 
       - make -f unix/Makefile clean
       - . ../setup_ndk.sh "i686-linux-android" "i686-linux-android" $UNZIP_VERSION
-      - echo $CC
       - make -f unix/Makefile generic      
-      - ls -lrt
       - $STRIP unzip
       - ls -lrt
       - zip -u ../unzip$UNZIP_VERSION-android-i686-linux-android-bin.zip unzip
       - make -f unix/Makefile clean
       - . ../setup_ndk.sh "x86_64-linux-android" "x86_64-linux-android" $UNZIP_VERSION
-      - echo $CC
       - make -f unix/Makefile generic
-      - ls -lrt
       - $STRIP unzip
       - ls -lrt
       - zip -u ../unzip$UNZIP_VERSION-android-x86_64-linux-android-bin.zip unzip
       - make -f unix/Makefile clean
       - . ../setup_ndk.sh "armv7a-linux-androideabi" "arm-linux-androideabi" $UNZIP_VERSION
-      - echo $CC
       - make -f unix/Makefile generic
-      - ls -lrt
       - $STRIP unzip
       - ls -lrt
       - zip -u ../unzip$UNZIP_VERSION-android-arm-linux-androideabi-bin.zip unzip
       - make -f unix/Makefile clean
       - . ../setup_ndk.sh "aarch64-linux-android" "aarch64-linux-android" $UNZIP_VERSION
-      - echo $CC
       - make -f unix/Makefile generic
-      - ls -lrt
       - $STRIP unzip
       - ls -lrt
       - zip -u ../unzip$UNZIP_VERSION-android-aarch64-linux-android-bin.zip unzip
       - make -f unix/Makefile clean
-      - ls -lrt
       #- ls -lrt $ANDROID_NDK_HOME/toolchains/llvm/prebuilt/linux-x86_64/bin
       #- pwd
       - cd ..
@@ -328,17 +310,15 @@ matrix:
         - export ANDROID_NDK_HOME=$ANDROID_HOME/ndk-bundle
         - export HUGS_VERSION=Sep2006
       script:
-      - curl -R -O https://www.haskell.org/hugs/downloads/2006-09/hugs98-plus-Sep2006.tar.gz
-      - ls -lrt
+      - curl -R -O https://www.haskell.org/hugs/downloads/2006-09/hugs98-plus-$HUGS_VERSION.tar.gz
       - tar zxf hugs98-plus-$HUGS_VERSION.tar.gz
-      - ls -lrt
       - cd hugs98-plus-$HUGS_VERSION
-      - ls -lrt
       # build for the host
       - ./configure --without-readline --without-ncurses
       - make -j 4
       - ls -lrt
       - ls -lrt src
+      - src/runhugs #--version
       - make clean
       # build for android targets
       - ../build_android_hugs.sh "i686-linux-android" "i686-linux-android" $HUGS_VERSION
@@ -362,6 +342,59 @@ matrix:
           - $HUGS_DEPLOY_ROOT/hugs98-plus-$HUGS_VERSION-android-x86_64-linux-android-bin.zip
           - $HUGS_DEPLOY_ROOT/hugs98-plus-$HUGS_VERSION-android-armv7a-linux-androideabi-bin.zip
           - $HUGS_DEPLOY_ROOT/hugs98-plus-$HUGS_VERSION-android-aarch64-linux-android-bin.zip
+        skip_cleanup: true
+        on:
+          tags: true          
+
+    - os: linux
+      language: android
+      compiler: gcc/cmake
+      android:
+        components:
+            - build-tools-26.0.2
+            - android-26
+      name: scheme48 build
+      before_install:
+        - echo y | sdkmanager "ndk-bundle"
+        - echo y | sdkmanager "cmake;3.6.4111459"
+        - echo y | sdkmanager "lldb;3.1"
+      before_script:
+        - export ANDROID_NDK_HOME=$ANDROID_HOME/ndk-bundle
+        - export SCHEME48_VERSION=1.9.2
+      script:
+      - curl -R -O http://s48.org/$SCHEME48_VERSION/scheme48-$SCHEME48_VERSION.tgz
+      - tar zxf scheme48-$SCHEME48_VERSION.tgz
+      - cd scheme48-$SCHEME48_VERSION
+      # build for the host
+      - ./configure
+      - make -j 4
+      - ls -lrt
+      - ls -lrt c
+      - ls -lrt build
+      #- scheme48 --version
+      - make clean
+      # build for android targets
+      - ../build_android_scheme48.sh "i686-linux-android" "i686-linux-android" $SCHEME48_VERSION
+      - make clean
+      - ../build_android_scheme48.sh "x86_64-linux-android" "x86_64-linux-android" $SCHEME48_VERSION
+      - make clean
+      - ../build_android_scheme48.sh "armv7a-linux-androideabi" "arm-linux-androideabi" $SCHEME48_VERSION
+      - make clean
+      - ../build_android_scheme48.sh "aarch64-linux-android" "aarch64-linux-android" $SCHEME48_VERSION
+      - make clean
+      - pwd
+      - cd ..
+      - ls -lrt
+      - export SCHEME48_DEPLOY_ROOT=`pwd`
+      deploy:
+        provider: releases
+        api_key:
+          secure: yguu02IQ69zMGNLTfGH1DuOuAwjK0nqV1Fy6jvhl1l0eo5O7JuxgLjESp83InFBZFJ4Bx4amfOTm/NvblGM/lvJOJao8pEVcsOsxRKU4BRIN1u8zWsUJthkGK3rj21lTPtEy6PU+fT49G1TbWyQkgX18jmfxDq4TDuiUAU3b6ZYDUZdKODVtrE5NN6tSlb4MOsBTcXWnf4MSt7Nej9mpoL9AOWbFRpXo3zwg84xUz9iJW3TClC7HDVGTbzBuikDwN5ouN6RD424Q1U+WFZoLadAtdlW9quM4yhUR/TCQD/PB0iz77OBGq4+ZT/LoJ/a1Q7G7XaHxS1tn5PqzRc7fx2TaYfMRwS318l+g+6i7xlEgPEHhrOL7R0o27fYQtJ7Qdh8DZ7bPItVvya8nSoA2e/QHPFuvnFO4GJ7HYptv5u2kBRn2s6IThsmlrOp25esiudODqUwoMQy9cyyfK3wviBKWGapmeZ5YY0Q5AsdCjygWFXWgEJP/BwhtBX0LKCeY4TAiA1skZTxKvzfHdHb635BNQVysUIA/eGnAk8RtU/aFKGYI5+dHu2kZB912MPKgzn2RZMfQyaimyVAKoOsrM/IrpKGvaaivZysv/bbCI35Ik1uYXEvoKFa8CxLv46pc2VfMuChZk72r0nudy2qGNZpmxr+azRWanxjWMe4QJ4s=
+        file: 
+          - $SCHEME48_DEPLOY_ROOT/scheme48-$SCHEME48_VERSION-android-i686-linux-android-bin.zip
+          - $SCHEME48_DEPLOY_ROOT/scheme48-$SCHEME48_VERSION-android-x86_64-linux-android-bin.zip
+          - $SCHEME48_DEPLOY_ROOT/scheme48-$SCHEME48_VERSION-android-armv7a-linux-androideabi-bin.zip
+          - $SCHEME48_DEPLOY_ROOT/scheme48-$SCHEME48_VERSION-android-aarch64-linux-android-bin.zip
         skip_cleanup: true
         on:
           tags: true          
