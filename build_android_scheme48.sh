@@ -12,7 +12,7 @@ sed -i 's/LD = gcc/#LD = gcc/g' Makefile
 sed -i 's/-shared  -rdynamic/-shared /g' Makefile
 sed -i 's/LIBS = -lnsl -ldl -lm/LIBS = -ldl -lm/g' Makefile 
 sed -i 's/		*.o c\/unix\/*.o c\/posix\/*.o c\/net\/*.o c\/*.o /*.o c\/unix\/*.o c\/posix\/*.o c\/net\/*.o c\/ffi-test\/*.o c\/r6rs\/*.o c\/*.o /g' Makefile
-sed -i 's/*.o c\/unix\/*.o/*.oo c\/unixxinu/*.o/g' Makefile
+sed -i 's/\*\.o c\/unix\/\*\.o/\*\.oo c\/unixxinu\/\*\.o/g' Makefile
 cat Makefile
 make -j 4 || true   # ignore build error when cross compiling
 ls -lrt
