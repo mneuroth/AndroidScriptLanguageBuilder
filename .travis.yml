@@ -293,7 +293,6 @@ matrix:
         on:
           tags: true
           
-  include:    
     - os: linux
       language: android
       compiler: gcc/cmake
@@ -346,6 +345,7 @@ matrix:
         on:
           tags: true          
 
+  include:    
     - os: linux
       language: android
       compiler: gcc/cmake
