@@ -318,7 +318,7 @@ matrix:
       - make -j 4
       - ls -lrt
       - ls -lrt src
-      - src/runhugs #--version
+      #- src/runhugs #--version
       - make clean
       # build for android targets
       - ../build_android_hugs.sh "i686-linux-android" "i686-linux-android" $HUGS_VERSION
