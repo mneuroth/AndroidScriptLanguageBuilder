@@ -345,7 +345,6 @@ matrix:
         on:
           tags: true          
 
-  include:    
     - os: linux
       language: android
       compiler: gcc/cmake
@@ -401,6 +400,7 @@ matrix:
         on:
           tags: true          
 
+  include:    
     - os: linux
       language: android
       compiler: gcc/cmake
@@ -419,7 +419,7 @@ matrix:
       script:
       - curl -L https://prdownloads.sourceforge.net/tcl/tcl$TCL_VERSION-src.tar.gz >tcl$TCL_VERSION-src.tar.gz 
       - tar zxf tcl$TCL_VERSION-src.tar.gz
-      - cd tcl$TCL_VERSION-src
+      - cd tcl$TCL_VERSION
       # patch the sources
       #- sed -i 's/\*\.o c\/unix\/\*\.o c\/posix\/\*\.o c\/net\/\*\.o c\/\*\.o/\*\.o c\/unix\/\*\.o c\/posix\/\*\.o c\/net\/\*\.o c\/ffi-test\/\*\.o c\/r6rs\/\*\.o c\/\*\.o/g' Makefile.in
       # build for the host
