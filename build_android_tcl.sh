@@ -2,8 +2,8 @@
 #set -x
 echo "building tcl..."
 . ../../setup_ndk.sh $1 $2 $3
-./configure --help
-echo "============================"
+#./configure --help
+#echo "============================"
 #./configure --host=arm-linux-eabi --build=i686-pc-linux # --without-readline 
 ./configure --host=$2 --build=i686-pc-linux --disable-shared
 echo "============================"
@@ -18,5 +18,5 @@ $STRIP tclsh
 ls -lrt
 zip -u ../../tc-$lVERSION_NO-android-$COMPILER_TARGET-bin.zip tclsh libtcl8.6.so
 ls -lrt
-#- ./tclsh
-cd .. 
+#./tclsh
+#cd .. 

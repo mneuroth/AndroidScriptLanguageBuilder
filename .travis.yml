@@ -345,6 +345,7 @@ matrix:
         on:
           tags: true          
 
+  include:    
     - os: linux
       language: android
       compiler: gcc/cmake
@@ -368,7 +369,7 @@ matrix:
       - sed -i 's/\*\.o c\/unix\/\*\.o c\/posix\/\*\.o c\/net\/\*\.o c\/\*\.o/\*\.o c\/unix\/\*\.o c\/posix\/\*\.o c\/net\/\*\.o c\/ffi-test\/\*\.o c\/r6rs\/\*\.o c\/\*\.o/g' Makefile.in
       # build for the host
       - ./configure
-      - cat Makefile
+      #- cat Makefile
       - make -j 4
       - cp scheme48.image ..
       - ls -lrt
@@ -400,7 +401,6 @@ matrix:
         on:
           tags: true          
 
-  include:    
     - os: linux
       language: android
       compiler: gcc/cmake
@@ -426,7 +426,7 @@ matrix:
       # patch the sources
       #- sed -i 's/\*\.o c\/unix\/\*\.o c\/posix\/\*\.o c\/net\/\*\.o c\/\*\.o/\*\.o c\/unix\/\*\.o c\/posix\/\*\.o c\/net\/\*\.o c\/ffi-test\/\*\.o c\/r6rs\/\*\.o c\/\*\.o/g' Makefile.in
       # build for the host
-      - ./configure
+      - ./configure --disable-shared
       #- cat Makefile
       - make -j 4
       - ls -lrt
@@ -441,6 +441,8 @@ matrix:
       - make clean
       - ../../build_android_tcl.sh "aarch64-linux-android" "aarch64-linux-android" $TCL_VERSION
       - make clean
+      - cd ..
+      - ls -lrt
       - cd ..
       - ls -lrt
       - export TCL_DEPLOY_ROOT=`pwd`
