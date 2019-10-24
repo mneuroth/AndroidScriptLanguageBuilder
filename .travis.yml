@@ -54,62 +54,6 @@ matrix:
         on:
           tags: true
 
-  include:
-    - os: linux
-      language: android
-      compiler: gcc/cmake
-      android:
-        components:
-            - build-tools-26.0.2
-            - android-26
-      name: gnuplot build
-      before_install:
-        - echo y | sdkmanager "ndk-bundle"
-        - echo y | sdkmanager "cmake;3.6.4111459"
-        - echo y | sdkmanager "lldb;3.1"
-      before_script:
-        - export ANDROID_NDK_HOME=$ANDROID_HOME/ndk-bundle
-        - export GNUPLOT_VERSION=5.2.7
-      script:
-      - curl -L https://downloads.sourceforge.net/project/gnuplot/gnuplot/$GNUPLOT_VERSION/gnuplot-$GNUPLOT_VERSION.tar.gz >gnuplot-$GNUPLOT_VERSION.tar.gz 
-      - tar zxf gnuplot-$GNUPLOT_VERSION.tar.gz
-      - cd gnuplot-$GNUPLOT_VERSION
-      # patch sources 
-      - sed -i 's/if (setuid(getuid()) != 0) {/if (0 != 0) {/g' src/plot.c
-      # build for the host
-      - ./configure
-      - make -j 4 || true 
-      - ls -lrt
-      - ls -lrt src
-      - ls -lrt docs
-      - cp docs/gnuplot.gih ..
-      - ls -lrt ..
-      - make clean
-      # build for android targets
-      - ../build_android_gnuplot.sh "i686-linux-android" "i686-linux-android" $GNUPLOT_VERSION
-      - make clean
-      - ../build_android_gnuplot.sh "x86_64-linux-android" "x86_64-linux-android" $GNUPLOT_VERSION
-      - make clean
-      - ../build_android_gnuplot.sh "armv7a-linux-androideabi" "arm-linux-androideabi" $GNUPLOT_VERSION
-      - make clean
-      - ../build_android_gnuplot.sh "aarch64-linux-android" "aarch64-linux-android" $GNUPLOT_VERSION
-      - make clean
-      - ls -lrt
-      - export GNUPLOT_DEPLOY_ROOT=`pwd`
-      deploy:
-        provider: releases
-        api_key:
-          secure: yguu02IQ69zMGNLTfGH1DuOuAwjK0nqV1Fy6jvhl1l0eo5O7JuxgLjESp83InFBZFJ4Bx4amfOTm/NvblGM/lvJOJao8pEVcsOsxRKU4BRIN1u8zWsUJthkGK3rj21lTPtEy6PU+fT49G1TbWyQkgX18jmfxDq4TDuiUAU3b6ZYDUZdKODVtrE5NN6tSlb4MOsBTcXWnf4MSt7Nej9mpoL9AOWbFRpXo3zwg84xUz9iJW3TClC7HDVGTbzBuikDwN5ouN6RD424Q1U+WFZoLadAtdlW9quM4yhUR/TCQD/PB0iz77OBGq4+ZT/LoJ/a1Q7G7XaHxS1tn5PqzRc7fx2TaYfMRwS318l+g+6i7xlEgPEHhrOL7R0o27fYQtJ7Qdh8DZ7bPItVvya8nSoA2e/QHPFuvnFO4GJ7HYptv5u2kBRn2s6IThsmlrOp25esiudODqUwoMQy9cyyfK3wviBKWGapmeZ5YY0Q5AsdCjygWFXWgEJP/BwhtBX0LKCeY4TAiA1skZTxKvzfHdHb635BNQVysUIA/eGnAk8RtU/aFKGYI5+dHu2kZB912MPKgzn2RZMfQyaimyVAKoOsrM/IrpKGvaaivZysv/bbCI35Ik1uYXEvoKFa8CxLv46pc2VfMuChZk72r0nudy2qGNZpmxr+azRWanxjWMe4QJ4s=
-        file: 
-          - $GNUPLOT_DEPLOY_ROOT/gnuplot-$GNUPLOT_VERSION-android-i686-linux-android-bin.zip
-          - $GNUPLOT_DEPLOY_ROOT/gnuplot-$GNUPLOT_VERSION-android-x86_64-linux-android-bin.zip
-          - $GNUPLOT_DEPLOY_ROOT/gnuplot-$GNUPLOT_VERSION-android-armv7a-linux-androideabi-bin.zip
-          - $GNUPLOT_DEPLOY_ROOT/gnuplot-$GNUPLOT_VERSION-android-aarch64-linux-android-bin.zip
-        skip_cleanup: true
-        on:
-          tags: true
-
-  exclude:
     - os: linux
       language: android
       compiler: gcc/cmake
@@ -471,6 +415,60 @@ matrix:
         components:
             - build-tools-26.0.2
             - android-26
+      name: gnuplot build
+      before_install:
+        - echo y | sdkmanager "ndk-bundle"
+        - echo y | sdkmanager "cmake;3.6.4111459"
+        - echo y | sdkmanager "lldb;3.1"
+      before_script:
+        - export ANDROID_NDK_HOME=$ANDROID_HOME/ndk-bundle
+        - export GNUPLOT_VERSION=5.2.7
+      script:
+      - curl -L https://downloads.sourceforge.net/project/gnuplot/gnuplot/$GNUPLOT_VERSION/gnuplot-$GNUPLOT_VERSION.tar.gz >gnuplot-$GNUPLOT_VERSION.tar.gz 
+      - tar zxf gnuplot-$GNUPLOT_VERSION.tar.gz
+      - cd gnuplot-$GNUPLOT_VERSION
+      # patch sources 
+      - sed -i 's/if (setuid(getuid()) != 0) {/if (0 != 0) {/g' src/plot.c
+      # build for the host
+      - ./configure
+      - make -j 4 || true 
+      - ls -lrt
+      - ls -lrt src
+      - ls -lrt docs
+      - cp docs/gnuplot.gih ..
+      - ls -lrt ..
+      - make clean
+      # build for android targets
+      - ../build_android_gnuplot.sh "i686-linux-android" "i686-linux-android" $GNUPLOT_VERSION
+      - make clean
+      - ../build_android_gnuplot.sh "x86_64-linux-android" "x86_64-linux-android" $GNUPLOT_VERSION
+      - make clean
+      - ../build_android_gnuplot.sh "armv7a-linux-androideabi" "arm-linux-androideabi" $GNUPLOT_VERSION
+      - make clean
+      - ../build_android_gnuplot.sh "aarch64-linux-android" "aarch64-linux-android" $GNUPLOT_VERSION
+      - make clean
+      - ls -lrt
+      - export GNUPLOT_DEPLOY_ROOT=`pwd`
+      deploy:
+        provider: releases
+        api_key:
+          secure: yguu02IQ69zMGNLTfGH1DuOuAwjK0nqV1Fy6jvhl1l0eo5O7JuxgLjESp83InFBZFJ4Bx4amfOTm/NvblGM/lvJOJao8pEVcsOsxRKU4BRIN1u8zWsUJthkGK3rj21lTPtEy6PU+fT49G1TbWyQkgX18jmfxDq4TDuiUAU3b6ZYDUZdKODVtrE5NN6tSlb4MOsBTcXWnf4MSt7Nej9mpoL9AOWbFRpXo3zwg84xUz9iJW3TClC7HDVGTbzBuikDwN5ouN6RD424Q1U+WFZoLadAtdlW9quM4yhUR/TCQD/PB0iz77OBGq4+ZT/LoJ/a1Q7G7XaHxS1tn5PqzRc7fx2TaYfMRwS318l+g+6i7xlEgPEHhrOL7R0o27fYQtJ7Qdh8DZ7bPItVvya8nSoA2e/QHPFuvnFO4GJ7HYptv5u2kBRn2s6IThsmlrOp25esiudODqUwoMQy9cyyfK3wviBKWGapmeZ5YY0Q5AsdCjygWFXWgEJP/BwhtBX0LKCeY4TAiA1skZTxKvzfHdHb635BNQVysUIA/eGnAk8RtU/aFKGYI5+dHu2kZB912MPKgzn2RZMfQyaimyVAKoOsrM/IrpKGvaaivZysv/bbCI35Ik1uYXEvoKFa8CxLv46pc2VfMuChZk72r0nudy2qGNZpmxr+azRWanxjWMe4QJ4s=
+        file: 
+          - $GNUPLOT_DEPLOY_ROOT/gnuplot-$GNUPLOT_VERSION-android-i686-linux-android-bin.zip
+          - $GNUPLOT_DEPLOY_ROOT/gnuplot-$GNUPLOT_VERSION-android-x86_64-linux-android-bin.zip
+          - $GNUPLOT_DEPLOY_ROOT/gnuplot-$GNUPLOT_VERSION-android-armv7a-linux-androideabi-bin.zip
+          - $GNUPLOT_DEPLOY_ROOT/gnuplot-$GNUPLOT_VERSION-android-aarch64-linux-android-bin.zip
+        skip_cleanup: true
+        on:
+          tags: true
+
+    - os: linux
+      language: android
+      compiler: gcc/cmake
+      android:
+        components:
+            - build-tools-26.0.2
+            - android-26
       name: swi-prolog build
       before_install:
         - echo y | sdkmanager "ndk-bundle"
@@ -489,6 +487,10 @@ matrix:
       - mkdir build
       - cd build
       - cmake -DCMAKE_INSTALL_PREFIX=/usr/local ..
+      - echo "======================="
+      - cat CMakeFiles/CMakeError.log
+      - echo "======================="
+      - cat CMakeFiles/CMakeOutput.log
       - make -j 4
       - ls -lrt
       #- swipl --version
