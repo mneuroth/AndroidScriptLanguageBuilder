@@ -12,10 +12,10 @@ This scripting languages are supported:
 - [scheme48](http://s48.org/)
 
 This scripting languages are candidates to support: 
+- [Tcl](https://www.tcl-lang.org/)
 - [Python](https://www.python.org/)
 - [Ruby](https://www.ruby-lang.org)
 - [Perl](https://www.perl.org/)
-- [Tcl](https://www.tcl-lang.org/)
 - [Io](http://iolanguage.com/)
 - Idris?
 - Julia?

@@ -385,7 +385,6 @@ matrix:
       - make clean
       - ../build_android_scheme48.sh "aarch64-linux-android" "aarch64-linux-android" $SCHEME48_VERSION
       - make clean
-      - pwd
       - cd ..
       - ls -lrt
       - export SCHEME48_DEPLOY_ROOT=`pwd`
@@ -398,6 +397,59 @@ matrix:
           - $SCHEME48_DEPLOY_ROOT/scheme48-$SCHEME48_VERSION-android-x86_64-linux-android-bin.zip
           - $SCHEME48_DEPLOY_ROOT/scheme48-$SCHEME48_VERSION-android-armv7a-linux-androideabi-bin.zip
           - $SCHEME48_DEPLOY_ROOT/scheme48-$SCHEME48_VERSION-android-aarch64-linux-android-bin.zip
+        skip_cleanup: true
+        on:
+          tags: true          
+
+    - os: linux
+      language: android
+      compiler: gcc/cmake
+      android:
+        components:
+            - build-tools-26.0.2
+            - android-26
+      name: tcl build
+      before_install:
+        - echo y | sdkmanager "ndk-bundle"
+        - echo y | sdkmanager "cmake;3.6.4111459"
+        - echo y | sdkmanager "lldb;3.1"
+      before_script:
+        - export ANDROID_NDK_HOME=$ANDROID_HOME/ndk-bundle
+        - export TCL_VERSION=8.6.9
+      script:
+      - curl -L https://prdownloads.sourceforge.net/tcl/tcl$TCL_VERSION-src.tar.gz >tcl$TCL_VERSION-src.tar.gz 
+      - tar zxf tcl$TCL_VERSION-src.tar.gz
+      - cd tcl$TCL_VERSION-src
+      # patch the sources
+      #- sed -i 's/\*\.o c\/unix\/\*\.o c\/posix\/\*\.o c\/net\/\*\.o c\/\*\.o/\*\.o c\/unix\/\*\.o c\/posix\/\*\.o c\/net\/\*\.o c\/ffi-test\/\*\.o c\/r6rs\/\*\.o c\/\*\.o/g' Makefile.in
+      # build for the host
+      - ./configure
+      - cat Makefile
+      - make -j 4
+      - ls -lrt
+      #- tcl --version
+      - make clean
+      # build for android targets
+      - ../build_android_tcl.sh "i686-linux-android" "i686-linux-android" $TCL_VERSION
+      - make clean
+      - ../build_android_tcl.sh "x86_64-linux-android" "x86_64-linux-android" $TCL_VERSION
+      - make clean
+      - ../build_android_tcl.sh "armv7a-linux-androideabi" "arm-linux-androideabi" $TCL_VERSION
+      - make clean
+      - ../build_android_tcl.sh "aarch64-linux-android" "aarch64-linux-android" $TCL_VERSION
+      - make clean
+      - cd ..
+      - ls -lrt
+      - export TCL_DEPLOY_ROOT=`pwd`
+      deploy:
+        provider: releases
+        api_key:
+          secure: yguu02IQ69zMGNLTfGH1DuOuAwjK0nqV1Fy6jvhl1l0eo5O7JuxgLjESp83InFBZFJ4Bx4amfOTm/NvblGM/lvJOJao8pEVcsOsxRKU4BRIN1u8zWsUJthkGK3rj21lTPtEy6PU+fT49G1TbWyQkgX18jmfxDq4TDuiUAU3b6ZYDUZdKODVtrE5NN6tSlb4MOsBTcXWnf4MSt7Nej9mpoL9AOWbFRpXo3zwg84xUz9iJW3TClC7HDVGTbzBuikDwN5ouN6RD424Q1U+WFZoLadAtdlW9quM4yhUR/TCQD/PB0iz77OBGq4+ZT/LoJ/a1Q7G7XaHxS1tn5PqzRc7fx2TaYfMRwS318l+g+6i7xlEgPEHhrOL7R0o27fYQtJ7Qdh8DZ7bPItVvya8nSoA2e/QHPFuvnFO4GJ7HYptv5u2kBRn2s6IThsmlrOp25esiudODqUwoMQy9cyyfK3wviBKWGapmeZ5YY0Q5AsdCjygWFXWgEJP/BwhtBX0LKCeY4TAiA1skZTxKvzfHdHb635BNQVysUIA/eGnAk8RtU/aFKGYI5+dHu2kZB912MPKgzn2RZMfQyaimyVAKoOsrM/IrpKGvaaivZysv/bbCI35Ik1uYXEvoKFa8CxLv46pc2VfMuChZk72r0nudy2qGNZpmxr+azRWanxjWMe4QJ4s=
+        file: 
+          - $TCL_DEPLOY_ROOT/tcl-$TCL_VERSION-android-i686-linux-android-bin.zip
+          - $TCL_DEPLOY_ROOT/tcl-$TCL_VERSION-android-x86_64-linux-android-bin.zip
+          - $TCL_DEPLOY_ROOT/tcl-$TCL_VERSION-android-armv7a-linux-androideabi-bin.zip
+          - $TCL_DEPLOY_ROOT/tcl-$TCL_VERSION-android-aarch64-linux-android-bin.zip
         skip_cleanup: true
         on:
           tags: true          
