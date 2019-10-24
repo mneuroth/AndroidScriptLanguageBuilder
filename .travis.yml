@@ -407,7 +407,6 @@ matrix:
         on:
           tags: true          
 
-  include:    
     - os: linux
       language: android
       compiler: gcc/cmake
@@ -462,6 +461,7 @@ matrix:
         on:
           tags: true
 
+  include:    
     - os: linux
       language: android
       compiler: gcc/cmake
@@ -486,7 +486,7 @@ matrix:
       # build for the host
       - mkdir build
       - cd build
-      - cmake -DCMAKE_INSTALL_PREFIX=/usr/local -DSWIPL_INSTALL_IN_LIB=ON -DSWIPL_PACKAGES_BDB=OFF -DSWIPL_PACKAGES_ODBC=OFF -DSWIPL_PACKAGES_QT=OFF -DSWIPL_PACKAGES_X=OFF..
+      - cmake -DCMAKE_INSTALL_PREFIX=/usr/local -DSWIPL_INSTALL_IN_LIB=ON -DSWIPL_PACKAGES_BDB=OFF -DSWIPL_PACKAGES_ODBC=OFF -DSWIPL_PACKAGES_QT=OFF -DSWIPL_PACKAGES_X=OFF ..
       - echo "======================="
       - cat CMakeFiles/CMakeError.log
       - echo "======================="
