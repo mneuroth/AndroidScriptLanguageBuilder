@@ -2,6 +2,7 @@
 #set -x
 echo "building tcl..."
 . ../../setup_ndk.sh $1 $2 $3
+export AR=$2"-ar"
 #./configure --help
 #echo "============================"
 #./configure --host=arm-linux-eabi --build=i686-pc-linux # --without-readline 
@@ -16,7 +17,7 @@ make -j 4 || true   # ignore build error when cross compiling
 ls -lrt
 $STRIP tclsh
 ls -lrt
-zip -u ../../tc-$lVERSION_NO-android-$COMPILER_TARGET-bin.zip tclsh libtcl8.6.so
+zip -u ../../tcl-$lVERSION_NO-android-$COMPILER_TARGET-bin.zip tclsh libtcl8.6.so
 ls -lrt
 #./tclsh
 #cd .. 
