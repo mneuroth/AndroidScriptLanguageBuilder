@@ -10,7 +10,7 @@ cd src
 ls -lrt
 $STRIP gnuplot
 cp ../../gnuplot.gih .
-zip -u ../gnuplot-$VERSION_NO-android-$COMPILER_TARGET-bin.zip gnuplot gnuplot.gih
+zip -u ../../gnuplot-$VERSION_NO-android-$COMPILER_TARGET-bin.zip gnuplot gnuplot.gih
 ls -lrt
 #- ./gnuplot -v
 cd ..
