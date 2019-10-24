@@ -5,7 +5,7 @@ echo "building tcl..."
 #./configure --help
 #echo "============================"
 #./configure --host=arm-linux-eabi --build=i686-pc-linux # --without-readline 
-./configure --host=$2 --build=i686-pc-linux --disable-shared
+./configure --host=$2 --build=i686-pc-linux # --disable-shared
 echo "============================"
 #sed -i 's/CC = gcc/#CC = gcc/g' Makefile
 #sed -i 's/LD = gcc/#LD = gcc/g' Makefile
