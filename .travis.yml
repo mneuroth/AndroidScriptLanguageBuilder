@@ -439,7 +439,7 @@ matrix:
       - make clean
       - ../../build_android_tcl.sh "x86_64-linux-android" "x86_64-linux-android" $TCL_VERSION
       - make clean
-      - ../build_android_tcl.sh "armv7a-linux-androideabi" "arm-linux-androideabi" $TCL_VERSION
+      - ../../build_android_tcl.sh "armv7a-linux-androideabi" "arm-linux-androideabi" $TCL_VERSION
       - make clean
       - ../../build_android_tcl.sh "aarch64-linux-android" "aarch64-linux-android" $TCL_VERSION
       - make clean
