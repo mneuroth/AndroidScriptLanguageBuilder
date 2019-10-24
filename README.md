@@ -10,9 +10,9 @@ This scripting languages are supported:
 - [ECL (Embeddable Common-Lisp)](https://common-lisp.net/project/ecl/)
 - [hugs](https://www.haskell.org/hugs/)
 - [scheme48](http://s48.org/)
+- [Tcl](https://www.tcl-lang.org/)
 
 This scripting languages are candidates to support: 
-- [Tcl](https://www.tcl-lang.org/)
 - [Prolog](http://swi-prolog.org)
 - [Python](https://www.python.org/)
 - [Ruby](https://www.ruby-lang.org)

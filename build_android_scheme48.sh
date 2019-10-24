@@ -20,4 +20,3 @@ cp ../scheme48.image .
 zip -u ../scheme48-$VERSION_NO-android-$COMPILER_TARGET-bin.zip scheme48vm scheme48.image
 ls -lrt
 #- ./scheme48
-#cd .. 

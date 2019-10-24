@@ -13,4 +13,3 @@ make -f makefile_android
 zip -u newlisp-$VERSION_NO-android-$COMPILER_TARGET-bin.zip newlisp
 ls -lrt
 #- ./newlisp -v
-cd ..
