@@ -5,18 +5,18 @@ echo "building tcl..."
 ./configure --help
 echo "============================"
 #./configure --host=arm-linux-eabi --build=i686-pc-linux # --without-readline 
-./configure --host=$2 --build=i686-pc-linux
+./configure --host=$2 --build=i686-pc-linux --disable-shared
 echo "============================"
 #sed -i 's/CC = gcc/#CC = gcc/g' Makefile
 #sed -i 's/LD = gcc/#LD = gcc/g' Makefile
 #sed -i 's/-shared  -rdynamic/-shared /g' Makefile
 #sed -i 's/LIBS = -lnsl -ldl -lm/LIBS = -ldl -lm/g' Makefile 
-cat Makefile
+#cat Makefile
 make -j 4 || true   # ignore build error when cross compiling
 ls -lrt
-$STRIP tcl
+$STRIP tclsh
 ls -lrt
-zip -u ../tc-$lVERSION_NO-android-$COMPILER_TARGET-bin.zip tcl
+zip -u ../tc-$lVERSION_NO-android-$COMPILER_TARGET-bin.zip tclsh libtcl8.6.so
 ls -lrt
-#- ./tcl
+#- ./tclsh
 cd .. 

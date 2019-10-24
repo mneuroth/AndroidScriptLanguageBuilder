@@ -13,6 +13,7 @@ This scripting languages are supported:
 
 This scripting languages are candidates to support: 
 - [Tcl](https://www.tcl-lang.org/)
+- [Prolog](http://swi-prolog.org)
 - [Python](https://www.python.org/)
 - [Ruby](https://www.ruby-lang.org)
 - [Perl](https://www.perl.org/)
@@ -20,7 +21,8 @@ This scripting languages are candidates to support:
 - Idris?
 - Julia?
 - R?
-- Prolog?
 - nim?
 
 Travis-ci build status [![Build Status](https://travis-ci.org/mneuroth/androidscriptlanguagebuilder.svg?branch=master)](https://travis-ci.org/mneuroth/androidscriptlanguagebuilder)
+
+See [termux project](https://github.com/termux/) for additional informations about cross compiling projects to android.
