@@ -446,6 +446,7 @@ matrix:
       - make clean
       - ../build_android_gnuplot.sh "aarch64-linux-android" "aarch64-linux-android" $GNUPLOT_VERSION
       - make clean
+      - cd ..
       - ls -lrt
       - export GNUPLOT_DEPLOY_ROOT=`pwd`
       deploy:
@@ -486,11 +487,11 @@ matrix:
       # build for the host
       - mkdir build
       - cd build
-      - cmake -DCMAKE_INSTALL_PREFIX=/usr/local -DSWIPL_INSTALL_IN_LIB=ON -DSWIPL_PACKAGES_BDB=OFF -DSWIPL_PACKAGES_ODBC=OFF -DSWIPL_PACKAGES_QT=OFF -DSWIPL_PACKAGES_X=OFF ..
-      - echo "======================="
-      - cat CMakeFiles/CMakeError.log
-      - echo "======================="
-      - cat CMakeFiles/CMakeOutput.log
+      - cmake -DCMAKE_INSTALL_PREFIX=/usr/local -DINSTALL_DOCUMENTATION=OFF -DUSE_GMP=ON -DSWIPL_INSTALL_IN_LIB=ON -DSWIPL_PACKAGES_BDB=OFF -DSWIPL_PACKAGES_ODBC=OFF -DSWIPL_PACKAGES_QT=OFF -DSWIPL_PACKAGES_X=OFF ..
+      #- echo "======================="
+      #- cat CMakeFiles/CMakeError.log
+      #- echo "======================="
+      #- cat CMakeFiles/CMakeOutput.log
       - make -j 4
       - ls -lrt
       #- swipl --version
