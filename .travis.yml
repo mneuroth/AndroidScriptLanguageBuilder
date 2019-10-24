@@ -73,6 +73,8 @@ matrix:
       - curl -L https://downloads.sourceforge.net/project/gnuplot/gnuplot/$GNUPLOT_VERSION/gnuplot-$GNUPLOT_VERSION.tar.gz >gnuplot-$GNUPLOT_VERSION.tar.gz 
       - tar zxf gnuplot-$GNUPLOT_VERSION.tar.gz
       - cd gnuplot-$GNUPLOT_VERSION
+      # patch sources 
+      - sed -i 's/if (setuid(getuid()) != 0) {/if (0 != 0) {/g' src/plot.c
       # build for the host
       - ./configure
       - make -j 4 || true 
@@ -426,7 +428,7 @@ matrix:
       # patch the sources
       #- sed -i 's/\*\.o c\/unix\/\*\.o c\/posix\/\*\.o c\/net\/\*\.o c\/\*\.o/\*\.o c\/unix\/\*\.o c\/posix\/\*\.o c\/net\/\*\.o c\/ffi-test\/\*\.o c\/r6rs\/\*\.o c\/\*\.o/g' Makefile.in
       # build for the host
-      - ./configure --disable-shared
+      - ./configure # --disable-shared
       #- cat Makefile
       - make -j 4
       - ls -lrt
