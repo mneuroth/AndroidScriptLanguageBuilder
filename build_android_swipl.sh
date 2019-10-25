@@ -1,7 +1,7 @@
 #!/bin/bash
 #set -x
 echo "building swipl..."
-. ../setup_ndk.sh $1 $2 $3
+. ../../setup_ndk.sh $1 $2 $3
 #export AR=$2"-ar"
 #./configure --host=$2 --build=i686-pc-linux # --disable-shared
 #echo "============================"

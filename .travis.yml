@@ -494,6 +494,10 @@ matrix:
       #- cat CMakeFiles/CMakeOutput.log
       - make -j 4
       - ls -lrt
+      - ls -lrt src
+      - ls -lrt home
+      - ls -lrt packages
+      - ls -lrt CMakeFiles
       #- swipl --version
       - make clean
       # build for android targets
