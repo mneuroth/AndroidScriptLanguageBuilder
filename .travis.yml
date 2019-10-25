@@ -495,10 +495,10 @@ matrix:
       - make -j 4
       - ls -lrt
       - ls -lrt src
-      - ls -lrt home
-      - ls -lrt packages
-      - ls -lrt CMakeFiles
-      #- swipl --version
+      - cd src
+      - ./swipl --version
+      - ./swipl --help
+      - cd ..
       - make clean
       # build for android targets
       - ../../build_android_swipl.sh "i686-linux-android" "i686-linux-android" $PROLOG_VERSION

@@ -7,8 +7,11 @@ echo "building swipl..."
 #echo "============================"
 make -j 4 || true   # ignore build error when cross compiling
 ls -lrt
+cd src
+ls -lrt 
 $STRIP swipl
 ls -lrt
-zip -u ../../swipl-$lVERSION_NO-android-$COMPILER_TARGET-bin.zip swipl
+zip -u ../../swipl-$lVERSION_NO-android-$COMPILER_TARGET-bin.zip swipl swipl.so.$3
 ls -lrt
 #./swipl
+cd ..
