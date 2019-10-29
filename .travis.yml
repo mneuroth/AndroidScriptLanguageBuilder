@@ -500,6 +500,9 @@ matrix:
       - ./swipl --help
       - cd ..
       - make clean
+      - ls -lrt
+      - rm CMakeCache.txt
+      - rm CMakeFiles/*
       # build for android targets
       - ../../build_android_swipl.sh "i686-linux-android" "i686-linux-android" $PROLOG_VERSION
       - make clean
