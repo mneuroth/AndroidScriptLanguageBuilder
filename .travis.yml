@@ -514,13 +514,19 @@ matrix:
       - rm CMakeCache.txt
       - rm -rf CMakeFiles/*
       # build for android targets
-      - ../../build_android_swipl.sh "i686-linux-android" "i686-linux-android" $PROLOG_VERSION
+      - ../../build_android_swipl.sh "i686-linux-android" "i686-linux-android" $PROLOG_VERSION "x86"
       - make clean
-      - ../../build_android_swipl.sh "x86_64-linux-android" "x86_64-linux-android" $PROLOG_VERSION
+      - rm CMakeCache.txt
+      - rm -rf CMakeFiles/*
+      - ../../build_android_swipl.sh "x86_64-linux-android" "x86_64-linux-android" $PROLOG_VERSION "x86_64"
       - make clean
-      - ../../build_android_swipl.sh "armv7a-linux-androideabi" "arm-linux-androideabi" $PROLOG_VERSION
+      - rm CMakeCache.txt
+      - rm -rf CMakeFiles/*
+      - ../../build_android_swipl.sh "armv7a-linux-androideabi" "arm-linux-androideabi" $PROLOG_VERSION "armeabi-v7a"
       - make clean
-      - ../../build_android_swipl.sh "aarch64-linux-android" "aarch64-linux-android" $PROLOG_VERSION
+      - rm CMakeCache.txt
+      - rm -rf CMakeFiles/*
+      - ../../build_android_swipl.sh "aarch64-linux-android" "aarch64-linux-android" $PROLOG_VERSION "arm64-v8a"
       - make clean
       - cd ..
       - ls -lrt
