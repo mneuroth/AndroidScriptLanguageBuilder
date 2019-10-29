@@ -472,6 +472,16 @@ matrix:
             - android-26
       name: swi-prolog build
       before_install:
+        - curl -L https://github.com/Kitware/CMake/releases/download/v3.13.4/cmake-3.13.4.tar.gz -O
+        - tar -xvzf cmake-3.13.4.tar.gz
+        - cd cmake-3.13.4
+        - ./configure
+        - make -j 8
+        - sudo apt remove cmake
+        - sudo apt remove cmake-data
+        - sudo make install
+        - export PATH=$PATH:/usr/local/bin
+        - cd ..
         - echo y | sdkmanager "ndk-bundle"
         - echo y | sdkmanager "cmake;3.6.4111459"
         - echo y | sdkmanager "lldb;3.1"
@@ -502,7 +512,7 @@ matrix:
       - make clean
       - ls -lrt
       - rm CMakeCache.txt
-      - rm CMakeFiles/*
+      - rm -rf CMakeFiles/*
       # build for android targets
       - ../../build_android_swipl.sh "i686-linux-android" "i686-linux-android" $PROLOG_VERSION
       - make clean
