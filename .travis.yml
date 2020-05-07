@@ -59,13 +59,13 @@ matrix:
       compiler: gcc/cmake
       android:
         components:
-            - build-tools-28.0.2
-            - android-28
+            - build-tools-26.0.2
+            - android-26
       name: newLISP build
       before_install:
         - echo y | sdkmanager "ndk-bundle"
         - echo y | sdkmanager "cmake;3.6.4111459"
-      #  - echo y | sdkmanager "lldb;3.1"
+        - echo y | sdkmanager "lldb;3.1"
       before_script:
         - export ANDROID_NDK_HOME=$ANDROID_HOME/ndk-bundle
         - export NEWLISP_VERSION=10.7.5
@@ -105,7 +105,6 @@ matrix:
         on:
           tags: true
 
-  exclude:    
     - os: linux
       language: android
       compiler: gcc/cmake
@@ -176,6 +175,7 @@ matrix:
         on:
           tags: true
 
+  exclude:    
     - os: linux
       language: android
       compiler: gcc/cmake
