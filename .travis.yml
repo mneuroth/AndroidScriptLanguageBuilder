@@ -409,7 +409,6 @@ matrix:
         - export GNUPLOT_VERSION=5.4.rc1
       script:
       - curl -L https://downloads.sourceforge.net/project/gnuplot/gnuplot/testing/gnuplot-$GNUPLOT_VERSION.tar.gz >gnuplot-$GNUPLOT_VERSION.tar.gz 
-      - ls -lrt
       - tar zxf gnuplot-$GNUPLOT_VERSION.tar.gz
       - cd gnuplot-$GNUPLOT_VERSION
       # patch sources 
