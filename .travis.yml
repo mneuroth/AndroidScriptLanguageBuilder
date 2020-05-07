@@ -55,9 +55,12 @@ matrix:
       - ls -lrt
       - rm CMakeCache.txt
       - rm -rf CMakeFiles/*
+      - which ninja
       - sudo apt-get install ninja
+      - which ninja
       # build for android targets
       - ../../build_android_swipl.sh "i686-linux-android" "i686-linux-android" $PROLOG_VERSION "x86"
+      - ninja
       - make clean
       - rm CMakeCache.txt
       - rm -rf CMakeFiles/*
