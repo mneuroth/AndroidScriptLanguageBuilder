@@ -566,13 +566,15 @@ matrix:
       #- git clone https://gitlab.com/embeddable-common-lisp/ecl.git
       #- cd ecl
       # build for the host
+      - gcc -v
+      - g++ -v
       - ./configure --help
-      - ./configure 
+      - ./configure --with-cxx
       - make -j 4
       - ls -lrt
       - make clean
       # ***************************
-      - ./configure --prefix=`pwd`/ecl-android-host --disable-c99complex
+      - ./configure --prefix=`pwd`/ecl-android-host --with-cxx --disable-c99complex
       - make -j 4
       - make install
       - ls -lrt ecl-android-host
