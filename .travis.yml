@@ -1,6 +1,6 @@
 matrix:
 
-  include:    
+  exclude:    
     - os: linux
       language: android
       compiler: gcc/cmake
@@ -90,7 +90,7 @@ matrix:
         on:
           tags: true          
 
-  exclude:      
+  #exclude:      
     - os: linux
       language: android
       compiler: gcc/cmake
@@ -541,7 +541,7 @@ matrix:
         on:
           tags: true
         
-  #exclude:    
+  include:    
     - os: linux
       language: android
       compiler: gcc/cmake
