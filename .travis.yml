@@ -1,6 +1,6 @@
 matrix:
 
-  exclude:    
+  include:    
     - os: linux
       language: android
       compiler: gcc/cmake
@@ -28,7 +28,7 @@ matrix:
       before_script:
         - export ANDROID_NDK_HOME=$ANDROID_HOME/ndk-bundle
         #- export PROLOG_VERSION=8.0.3
-        - export PROLOG_VERSION=8.1.28
+        - export PROLOG_VERSION=8.2.3
       script:
       #- curl -R -O https://www.swi-prolog.org/download/stable/src/swipl-$PROLOG_VERSION.tar.gz 
       - curl -R -O https://www.swi-prolog.org/download/devel/src/swipl-$PROLOG_VERSION.tar.gz 
@@ -90,7 +90,7 @@ matrix:
         on:
           tags: true          
     
-  include:    
+ # include:    
     - os: linux
       language: android
       compiler: gcc/cmake
