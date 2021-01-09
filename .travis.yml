@@ -169,14 +169,67 @@ matrix:
         components:
             - build-tools-26.0.2
             - android-26
-      name: Lua build
+      name: Lua build 5.3.x
       before_install:
         - echo y | sdkmanager "ndk-bundle"
         - echo y | sdkmanager "cmake;3.6.4111459"
         #- echo y | sdkmanager "lldb;3.1"
       before_script:
         - export ANDROID_NDK_HOME=$ANDROID_HOME/ndk-bundle
-        - export LUA_VERSION=5.3.5
+        - export LUA_VERSION=5.3.6
+      script:
+      - curl -R -O http://www.lua.org/ftp/lua-$LUA_VERSION.tar.gz
+      - tar zxf lua-$LUA_VERSION.tar.gz
+      - cd lua-$LUA_VERSION
+      # disable internal build variables in make file to use externally set environment ariables
+      - sed -i 's/CC= gcc -std=gnu99/#CC= i686-linux-android26-clang/g' src/Makefile
+      - sed -i 's/PLAT= none/PLAT= posix/g' src/Makefile
+      - sed -i 's/AR= ar rcu/#AR= i686-linux-android-ar rcu/g' src/Makefile
+      - sed -i 's/RANLIB= ranlib/#RANLIB= i686-linux-android-ranlib/g' src/Makefile
+      - sed -i 's/MYCFLAGS=/#MYCFLAGS=/g' src/Makefile
+      - sed -i 's/MYLDFLAGS=/#MYLDFLAGS=/g' src/Makefile
+      # setup compiler environment for android cross compiler
+      - ls -lrt
+      - ../build_android_lua.sh "i686-linux-android" "i686-linux-android" $LUA_VERSION
+      - make clean
+      - ../build_android_lua.sh "x86_64-linux-android" "x86_64-linux-android" $LUA_VERSION
+      - make clean
+      - ../build_android_lua.sh "armv7a-linux-androideabi" "arm-linux-androideabi" $LUA_VERSION
+      - make clean
+      - ../build_android_lua.sh "aarch64-linux-android" "aarch64-linux-android" $LUA_VERSION
+      - make clean
+      - ls -lrt
+      #- ls -lrt $ANDROID_NDK_HOME/toolchains/llvm/prebuilt/linux-x86_64/bin
+      #- pwd
+      - export LUA_DEPLOY_ROOT=`pwd`
+      deploy:
+        provider: releases
+        api_key:
+          secure: yguu02IQ69zMGNLTfGH1DuOuAwjK0nqV1Fy6jvhl1l0eo5O7JuxgLjESp83InFBZFJ4Bx4amfOTm/NvblGM/lvJOJao8pEVcsOsxRKU4BRIN1u8zWsUJthkGK3rj21lTPtEy6PU+fT49G1TbWyQkgX18jmfxDq4TDuiUAU3b6ZYDUZdKODVtrE5NN6tSlb4MOsBTcXWnf4MSt7Nej9mpoL9AOWbFRpXo3zwg84xUz9iJW3TClC7HDVGTbzBuikDwN5ouN6RD424Q1U+WFZoLadAtdlW9quM4yhUR/TCQD/PB0iz77OBGq4+ZT/LoJ/a1Q7G7XaHxS1tn5PqzRc7fx2TaYfMRwS318l+g+6i7xlEgPEHhrOL7R0o27fYQtJ7Qdh8DZ7bPItVvya8nSoA2e/QHPFuvnFO4GJ7HYptv5u2kBRn2s6IThsmlrOp25esiudODqUwoMQy9cyyfK3wviBKWGapmeZ5YY0Q5AsdCjygWFXWgEJP/BwhtBX0LKCeY4TAiA1skZTxKvzfHdHb635BNQVysUIA/eGnAk8RtU/aFKGYI5+dHu2kZB912MPKgzn2RZMfQyaimyVAKoOsrM/IrpKGvaaivZysv/bbCI35Ik1uYXEvoKFa8CxLv46pc2VfMuChZk72r0nudy2qGNZpmxr+azRWanxjWMe4QJ4s=
+        file: 
+          - $LUA_DEPLOY_ROOT/lua-$LUA_VERSION-android-i686-linux-android-bin.zip
+          - $LUA_DEPLOY_ROOT/lua-$LUA_VERSION-android-x86_64-linux-android-bin.zip
+          - $LUA_DEPLOY_ROOT/lua-$LUA_VERSION-android-armv7a-linux-androideabi-bin.zip
+          - $LUA_DEPLOY_ROOT/lua-$LUA_VERSION-android-aarch64-linux-android-bin.zip
+        skip_cleanup: true
+        on:
+          tags: true
+
+    - os: linux
+      language: android
+      compiler: gcc/cmake
+      android:
+        components:
+            - build-tools-26.0.2
+            - android-26
+      name: Lua build 5.4.x
+      before_install:
+        - echo y | sdkmanager "ndk-bundle"
+        - echo y | sdkmanager "cmake;3.6.4111459"
+        #- echo y | sdkmanager "lldb;3.1"
+      before_script:
+        - export ANDROID_NDK_HOME=$ANDROID_HOME/ndk-bundle
+        - export LUA_VERSION=5.4.2
       script:
       - curl -R -O http://www.lua.org/ftp/lua-$LUA_VERSION.tar.gz
       - tar zxf lua-$LUA_VERSION.tar.gz
@@ -387,7 +440,7 @@ matrix:
         #- echo y | sdkmanager "lldb;3.1"
       before_script:
         - export ANDROID_NDK_HOME=$ANDROID_HOME/ndk-bundle
-        - export TCL_VERSION=8.6.10
+        - export TCL_VERSION=8.6.11
       script:
       - curl -L https://prdownloads.sourceforge.net/tcl/tcl$TCL_VERSION-src.tar.gz >tcl$TCL_VERSION-src.tar.gz 
       - tar zxf tcl$TCL_VERSION-src.tar.gz
@@ -438,7 +491,7 @@ matrix:
         components:
             - build-tools-26.0.2
             - android-26
-      name: gnuplot build
+      name: gnuplot build 5.2.x
       before_install:
         - echo y | sdkmanager "ndk-bundle"
         - echo y | sdkmanager "cmake;3.6.4111459"
@@ -493,6 +546,61 @@ matrix:
         components:
             - build-tools-26.0.2
             - android-26
+      name: gnuplot build 5.4.x
+      before_install:
+        - echo y | sdkmanager "ndk-bundle"
+        - echo y | sdkmanager "cmake;3.6.4111459"
+        #- echo y | sdkmanager "lldb;3.1"
+      before_script:
+        - export ANDROID_NDK_HOME=$ANDROID_HOME/ndk-bundle
+        - export GNUPLOT_VERSION=5.4.1
+      script:
+      - curl -L https://downloads.sourceforge.net/project/gnuplot/gnuplot/$GNUPLOT_VERSION/gnuplot-$GNUPLOT_VERSION.tar.gz >gnuplot-$GNUPLOT_VERSION.tar.gz 
+      - tar zxf gnuplot-$GNUPLOT_VERSION.tar.gz
+      - cd gnuplot-$GNUPLOT_VERSION
+      # patch sources 
+      - sed -i 's/if (setuid(getuid()) != 0) {/if (0 != 0) {/g' src/plot.c
+      # build for the host
+      - ./configure
+      - make -j 4 || true 
+      - ls -lrt
+      - ls -lrt src
+      - ls -lrt docs
+      - cp docs/gnuplot.gih ..
+      - ls -lrt ..
+      - make clean
+      # build for android targets
+      - ../build_android_gnuplot.sh "i686-linux-android" "i686-linux-android" $GNUPLOT_VERSION
+      - make clean
+      - ../build_android_gnuplot.sh "x86_64-linux-android" "x86_64-linux-android" $GNUPLOT_VERSION
+      - make clean
+      - ../build_android_gnuplot.sh "armv7a-linux-androideabi" "arm-linux-androideabi" $GNUPLOT_VERSION
+      - make clean
+      - ../build_android_gnuplot.sh "aarch64-linux-android" "aarch64-linux-android" $GNUPLOT_VERSION
+      - make clean
+      - cd ..
+      - ls -lrt
+      - export GNUPLOT_DEPLOY_ROOT=`pwd`
+      deploy:
+        provider: releases
+        api_key:
+          secure: yguu02IQ69zMGNLTfGH1DuOuAwjK0nqV1Fy6jvhl1l0eo5O7JuxgLjESp83InFBZFJ4Bx4amfOTm/NvblGM/lvJOJao8pEVcsOsxRKU4BRIN1u8zWsUJthkGK3rj21lTPtEy6PU+fT49G1TbWyQkgX18jmfxDq4TDuiUAU3b6ZYDUZdKODVtrE5NN6tSlb4MOsBTcXWnf4MSt7Nej9mpoL9AOWbFRpXo3zwg84xUz9iJW3TClC7HDVGTbzBuikDwN5ouN6RD424Q1U+WFZoLadAtdlW9quM4yhUR/TCQD/PB0iz77OBGq4+ZT/LoJ/a1Q7G7XaHxS1tn5PqzRc7fx2TaYfMRwS318l+g+6i7xlEgPEHhrOL7R0o27fYQtJ7Qdh8DZ7bPItVvya8nSoA2e/QHPFuvnFO4GJ7HYptv5u2kBRn2s6IThsmlrOp25esiudODqUwoMQy9cyyfK3wviBKWGapmeZ5YY0Q5AsdCjygWFXWgEJP/BwhtBX0LKCeY4TAiA1skZTxKvzfHdHb635BNQVysUIA/eGnAk8RtU/aFKGYI5+dHu2kZB912MPKgzn2RZMfQyaimyVAKoOsrM/IrpKGvaaivZysv/bbCI35Ik1uYXEvoKFa8CxLv46pc2VfMuChZk72r0nudy2qGNZpmxr+azRWanxjWMe4QJ4s=
+        file: 
+          - $GNUPLOT_DEPLOY_ROOT/gnuplot-$GNUPLOT_VERSION-android-i686-linux-android-bin.zip
+          - $GNUPLOT_DEPLOY_ROOT/gnuplot-$GNUPLOT_VERSION-android-x86_64-linux-android-bin.zip
+          - $GNUPLOT_DEPLOY_ROOT/gnuplot-$GNUPLOT_VERSION-android-armv7a-linux-androideabi-bin.zip
+          - $GNUPLOT_DEPLOY_ROOT/gnuplot-$GNUPLOT_VERSION-android-aarch64-linux-android-bin.zip
+        skip_cleanup: true
+        on:
+          tags: true
+
+    - os: linux
+      language: android
+      compiler: gcc/cmake
+      android:
+        components:
+            - build-tools-26.0.2
+            - android-26
       name: gnuplot beta build
       before_install:
         - echo y | sdkmanager "ndk-bundle"
@@ -500,11 +608,15 @@ matrix:
         #- echo y | sdkmanager "lldb;3.1"
       before_script:
         - export ANDROID_NDK_HOME=$ANDROID_HOME/ndk-bundle
-        - export GNUPLOT_VERSION=5.4.rc1
+        - export GNUPLOT_VERSION=5.5.rc1
       script:
-      - curl -L https://downloads.sourceforge.net/project/gnuplot/gnuplot/testing/gnuplot-$GNUPLOT_VERSION.tar.gz >gnuplot-$GNUPLOT_VERSION.tar.gz 
-      - tar zxf gnuplot-$GNUPLOT_VERSION.tar.gz
-      - cd gnuplot-$GNUPLOT_VERSION
+      #- curl -L https://downloads.sourceforge.net/project/gnuplot/gnuplot/testing/gnuplot-$GNUPLOT_VERSION.tar.gz >gnuplot-$GNUPLOT_VERSION.tar.gz 
+      #- tar zxf gnuplot-$GNUPLOT_VERSION.tar.gz
+      #- cd gnuplot-$GNUPLOT_VERSION
+	  - git clone https://git.code.sf.net/p/gnuplot/gnuplot-main gnuplot-gnuplot-main
+	  - ls -lrt
+	  - cd gnuplot-gnuplot-main
+	  - ls -lrt
       # patch sources 
       - sed -i 's/if (setuid(getuid()) != 0) {/if (0 != 0) {/g' src/plot.c
       # build for the host
@@ -566,6 +678,7 @@ matrix:
       #- git clone https://gitlab.com/embeddable-common-lisp/ecl.git
       #- cd ecl
       # build for the host
+      - uname -a
       - gcc -v
       - g++ -v
       - ./configure --help
