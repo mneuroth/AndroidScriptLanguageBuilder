@@ -596,6 +596,7 @@ matrix:
         on:
           tags: true
 
+  exclude:
     - os: linux
       language: android
       compiler: gcc/cmake
