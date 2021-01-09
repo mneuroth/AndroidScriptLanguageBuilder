@@ -387,8 +387,10 @@ matrix:
         - export ANDROID_NDK_HOME=$ANDROID_HOME/ndk-bundle
         - export SCHEME48_VERSION=1.9.2
       script:
-      - curl -R -O http://s48.org/$SCHEME48_VERSION/scheme48-$SCHEME48_VERSION.tgz
+      - curl -R -O https://s48.org/$SCHEME48_VERSION/scheme48-$SCHEME48_VERSION.tgz
+      - ls -lrt
       - tar zxf scheme48-$SCHEME48_VERSION.tgz
+      - ls -lrt
       - cd scheme48-$SCHEME48_VERSION
       # patch the sources
       - sed -i 's/\*\.o c\/unix\/\*\.o c\/posix\/\*\.o c\/net\/\*\.o c\/\*\.o/\*\.o c\/unix\/\*\.o c\/posix\/\*\.o c\/net\/\*\.o c\/ffi-test\/\*\.o c\/r6rs\/\*\.o c\/\*\.o/g' Makefile.in
@@ -617,6 +619,7 @@ matrix:
       - ls -lrt
       - cd gnuplot-gnuplot-main
       - ls -lrt
+      - autoconf
       # patch sources 
       - sed -i 's/if (setuid(getuid()) != 0) {/if (0 != 0) {/g' src/plot.c
       # build for the host
