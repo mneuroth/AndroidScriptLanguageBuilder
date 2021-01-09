@@ -9,6 +9,6 @@ make -j 4 || true   # ignore build error when cross compiling
 ls -lrt
 $STRIP tclsh
 ls -lrt
-zip -u ../../tcl-$lVERSION_NO-android-$COMPILER_TARGET-bin.zip tclsh libtcl8.6.so
+zip -u ../../tcl-$VERSION_NO-android-$COMPILER_TARGET-bin.zip tclsh libtcl8.6.so
 ls -lrt
 #./tclsh
