@@ -89,9 +89,8 @@ matrix:
         skip_cleanup: true
         on:
           tags: true          
-
+    
   include:    
-  #exclude:      
     - os: linux
       language: android
       compiler: gcc/cmake
@@ -614,10 +613,10 @@ matrix:
       #- curl -L https://downloads.sourceforge.net/project/gnuplot/gnuplot/testing/gnuplot-$GNUPLOT_VERSION.tar.gz >gnuplot-$GNUPLOT_VERSION.tar.gz 
       #- tar zxf gnuplot-$GNUPLOT_VERSION.tar.gz
       #- cd gnuplot-$GNUPLOT_VERSION
-	  - git clone https://git.code.sf.net/p/gnuplot/gnuplot-main gnuplot-gnuplot-main
-	  - ls -lrt
-	  - cd gnuplot-gnuplot-main
-	  - ls -lrt
+      - git clone https://git.code.sf.net/p/gnuplot/gnuplot-main gnuplot-gnuplot-main
+      - ls -lrt
+      - cd gnuplot-gnuplot-main
+      - ls -lrt
       # patch sources 
       - sed -i 's/if (setuid(getuid()) != 0) {/if (0 != 0) {/g' src/plot.c
       # build for the host
